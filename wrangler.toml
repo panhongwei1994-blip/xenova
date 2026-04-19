@@ -1,8 +1,6 @@
-# Cloudflare Workers static assets configuration.
-# Build first, then deploy the generated client bundle with `wrangler deploy`.
+# Cloudflare Pages static assets configuration.
+# Build first, then deploy the generated client bundle with `wrangler pages deploy`.
 
 name = "astro-rocket"
 compatibility_date = "2026-04-20"
-
-[assets]
-directory = "./dist/client"
+pages_build_output_dir = "dist"
