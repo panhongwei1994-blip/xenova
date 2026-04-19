@@ -1,4 +1,11 @@
 ---
+/**
+ * LanguageSwitcher Component
+ *
+ * Dual-mode language switcher: auto-detects browser language on first visit,
+ * then allows manual toggle between EN and ZH. Injects translations from
+ * the centralized i18n.config.ts via data-i18n attributes.
+ */
 import { cn } from '@/lib/cn';
 
 interface Props {
@@ -8,82 +15,184 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class={cn("flex items-center text-sm font-medium", className)}>
-  <a
-    href="/zh/"
-    data-lang="zh"
-    class="lang-switch-btn inline-flex items-center justify-center rounded-md px-2 py-1.5 text-foreground-muted hover:text-foreground hover:bg-secondary transition-colors"
-    title="Switch to Chinese"
+<div class={cn("flex items-center text-sm font-medium", className)} id="lang-switcher">
+  <button
+    type="button"
+    data-lang-btn="zh"
+    class="lang-switch-btn inline-flex items-center justify-center rounded-md px-2 py-1.5 text-foreground-muted hover:text-foreground hover:bg-secondary transition-colors cursor-pointer"
+    title="切换到中文"
   >
     中
-  </a>
+  </button>
   <span class="text-border/50 text-xs mx-0.5">/</span>
-  <a
-    href="/"
-    data-lang="en"
-    class="lang-switch-btn inline-flex items-center justify-center rounded-md px-2 py-1.5 text-foreground-muted hover:text-foreground hover:bg-secondary transition-colors"
+  <button
+    type="button"
+    data-lang-btn="en"
+    class="lang-switch-btn inline-flex items-center justify-center rounded-md px-2 py-1.5 text-foreground-muted hover:text-foreground hover:bg-secondary transition-colors cursor-pointer"
     title="Switch to English"
   >
     EN
-  </a>
+  </button>
 </div>
 
 <script>
-  function initLanguageManager() {
-    // Current path info
-    const path = window.location.pathname;
-    const isZH = path.startsWith('/zh');
-    
-    // Auto-detect browser language if user hasn't explicitly set one
-    const langSet = localStorage.getItem('user_lang_set');
-    if (!langSet) {
-      const browserLang = navigator.language.toLowerCase();
-      // If browser is Chinese and we are not on Chinese page, redirect
-      if (browserLang.startsWith('zh') && !isZH) {
-        localStorage.setItem('user_lang_set', 'true');
-        window.location.href = '/zh' + (path === '/' ? '' : path);
-        return;
-      }
-      // If browser is English/Other and we are on Chinese page, redirect
-      if (!browserLang.startsWith('zh') && isZH) {
-        localStorage.setItem('user_lang_set', 'true');
-        window.location.href = path.replace(/^\/zh/, '') || '/';
-        return;
-      }
-      // Even if no redirect is needed, mark as checked
-      localStorage.setItem('user_lang_set', 'true');
-    }
+  // ── Translation Map (inlined from i18n.config.ts for client-side use) ──
+  const translations: Record<string, Record<string, string>> = {
+    en: {
+      'site.name': 'FoodFlow Digital',
+      'nav.services': 'Services',
+      'nav.portfolio': 'Portfolio',
+      'nav.about': 'About',
+      'nav.contact': 'Contact',
+      'hero.badge': 'Taking New Clients',
+      'hero.headline': 'Stop Giving 30% to Delivery Apps.',
+      'hero.headline2': 'Build Your Digital Empire.',
+      'hero.subheadline': 'We build independent ordering systems and high-converting websites. Drive massive traffic to your restaurant via Google & Facebook.',
+      'hero.cta': 'Get Free Audit',
+      'hero.cta2': 'View Our Work',
+      'services.badge': 'Services',
+      'services.title': 'What We Do',
+      'services.subtitle': 'End-to-end digital solutions for restaurants.',
+      'services.1.title': 'Mobile-First Professional Website',
+      'services.1.desc': 'A stunning, fast-loading website designed for mobile customers. Showcase your menu, ambiance, and brand story — optimized for conversions.',
+      'services.2.title': 'Independent Ordering (0% Commission)',
+      'services.2.desc': 'Your own branded ordering system with no platform commissions. Keep 100% of your revenue, build your customer database, and own the relationship.',
+      'services.3.title': 'Google & FB Traffic Engine',
+      'services.3.desc': 'Precision ad campaigns on Google and Facebook that drive hungry customers directly to your door. Measurable ROI, transparent reporting.',
+      'about.badge': 'About Us',
+      'about.title': 'Born from the restaurant industry.',
+      'about.title.highlight': 'Your growth partner.',
+      'about.p1': "We understand the F&B business because we've been in it. Our team combines restaurant operations experience with cutting-edge digital marketing expertise.",
+      'about.p2': 'We help restaurants break free from third-party platform dependency and build their own digital presence.',
+      'about.cta': 'Learn More',
+      'about.stat1': '200+ Restaurants Served',
+      'about.stat2': 'F&B Specialized',
+      'about.stat3': 'Serving Worldwide',
+      'about.stat4': 'Based in Melbourne, AU',
+      'portfolio.badge': 'Portfolio',
+      'portfolio.title': 'Our Work',
+      'portfolio.subtitle': 'Sample sites built for our restaurant clients.',
+      'testimonials.badge': 'Testimonials',
+      'testimonials.title': 'What Clients Say',
+      'testimonials.subtitle': 'Real feedback from restaurant owners.',
+      'testimonials.1.quote': '"Within 3 months of launching our independent ordering system, we cut Uber Eats dependency by 60%. The ROI on the website paid for itself in the first month."',
+      'testimonials.1.name': 'David Chen',
+      'testimonials.1.role': 'Owner, Golden Dragon',
+      'testimonials.2.quote': '"Their Google Ads strategy brought us 150+ new orders per week. We finally have our own customer database and don\'t rely on delivery platforms anymore."',
+      'testimonials.2.name': 'Maria Santos',
+      'testimonials.2.role': 'GM, Pizza Republic',
+      'blog.badge': 'Resources',
+      'blog.title': 'Latest Tips',
+      'blog.viewall': 'View all posts',
+      'cta.title': 'Ready to scale your restaurant?',
+      'cta.subtitle': 'Stop losing 30% to delivery apps. Let us build your digital empire — from website to ordering system to ad campaigns.',
+      'cta.button': 'Contact Us',
+      'cta.button2': 'Learn More',
+    },
+    zh: {
+      'site.name': 'FoodFlow Digital',
+      'nav.services': '服务',
+      'nav.portfolio': '案例展示',
+      'nav.about': '关于我们',
+      'nav.contact': '联系我们',
+      'hero.badge': '正在接受新客户',
+      'hero.headline': '停止向外卖平台缴纳30%佣金，',
+      'hero.headline2': '打造您的数字帝国。',
+      'hero.subheadline': '为您搭建独立点餐系统与高转化网站。通过谷歌和Facebook精准引流，助您餐厅业绩翻倍。',
+      'hero.cta': '获取免费诊断',
+      'hero.cta2': '查看我们的案例',
+      'services.badge': '核心服务',
+      'services.title': '我们的服务',
+      'services.subtitle': '为餐饮企业量身打造的数字化解决方案。',
+      'services.1.title': '移动端专业品牌网页',
+      'services.1.desc': '设计精美、加载极速的移动端优先网站。完美展示您的菜单、环境与品牌故事——专为转化优化。',
+      'services.2.title': '独立点餐系统 (0%抽成)',
+      'services.2.desc': '拥有自己品牌的点餐系统,零平台佣金。100%保留您的利润,积累自有客户数据库,掌握客户关系。',
+      'services.3.title': '谷歌与FB广告获客',
+      'services.3.desc': '在谷歌和Facebook上精准投放广告，将饥饿的客户直接引至您的餐厅。可衡量的投资回报，透明的数据报告。',
+      'about.badge': '关于我们',
+      'about.title': '从餐饮行业中诞生。',
+      'about.title.highlight': '您的增长伙伴。',
+      'about.p1': '我们深谙餐饮行业，因为我们就来自这个行业。我们的团队将餐厅运营经验与前沿数字营销技术完美结合。',
+      'about.p2': '我们帮助餐厅摆脱第三方平台依赖，建立自己的数字化自主阵地。',
+      'about.cta': '了解更多',
+      'about.stat1': '服务200+餐厅',
+      'about.stat2': '餐饮行业专精',
+      'about.stat3': '服务遍布全球',
+      'about.stat4': '总部位于墨尔本',
+      'portfolio.badge': '案例展示',
+      'portfolio.title': '我们的作品',
+      'portfolio.subtitle': '为餐饮客户打造的样板网站。',
+      'testimonials.badge': '客户评价',
+      'testimonials.title': '客户怎么说',
+      'testimonials.subtitle': '来自餐厅老板的真实反馈。',
+      'testimonials.1.quote': '"上线独立点餐系统3个月内，我们对Uber Eats的依赖减少了60%。网站投资在第一个月就收回了成本。"',
+      'testimonials.1.name': '陈大卫',
+      'testimonials.1.role': '金龙餐厅老板',
+      'testimonials.2.quote': '"他们的Google广告策略每周为我们带来150+新订单。我们终于有了自己的客户数据库，不再依赖外卖平台了。"',
+      'testimonials.2.name': '玛丽亚·桑托斯',
+      'testimonials.2.role': 'Pizza Republic 总经理',
+      'blog.badge': '行业资讯',
+      'blog.title': '最新文章',
+      'blog.viewall': '查看全部文章',
+      'cta.title': '准备好提升您的餐厅业绩了吗？',
+      'cta.subtitle': '停止向外卖平台缴纳30%佣金。让我们为您打造数字帝国——从品牌网站到点餐系统到广告投放。',
+      'cta.button': '联系我们',
+      'cta.button2': '了解更多',
+    },
+  };
 
-    // Handle clicks
-    const buttons = document.querySelectorAll('.lang-switch-btn');
-    buttons.forEach((btn) => {
-      // Remove old listener to avoid duplicates on view transitions
-      const newBtn = btn.cloneNode(true) as HTMLElement;
-      btn.parentNode?.replaceChild(newBtn, btn);
+  // ── Navigation label keys for dynamic nav translation ──
+  const navLabelMap: Record<string, string> = {
+    'Blog': 'blog.badge',
+    'Projects': 'portfolio.badge',
+    'About': 'nav.about',
+    'Contact': 'nav.contact',
+    'Services': 'nav.services',
+    'Portfolio': 'nav.portfolio',
+    // ZH reverse-map
+    '服务': 'nav.services',
+    '案例展示': 'nav.portfolio',
+    '关于我们': 'nav.about',
+    '联系我们': 'nav.contact',
+    '行业资讯': 'blog.badge',
+  };
 
-      newBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetLang = newBtn.dataset.lang;
-        localStorage.setItem('user_lang_set', 'true'); // User explicitly clicked
-        
-        let newPath = window.location.pathname;
-        if (targetLang === 'zh') {
-           if (!newPath.startsWith('/zh')) {
-             window.location.href = '/zh' + (newPath === '/' ? '' : newPath);
-           }
-        } else {
-           if (newPath.startsWith('/zh')) {
-             window.location.href = newPath.replace(/^\/zh/, '') || '/';
-           }
-        }
-      });
+  function detectLang(): string {
+    // 1. Check explicit user selection
+    const stored = localStorage.getItem('site_lang');
+    if (stored === 'zh' || stored === 'en') return stored;
+
+    // 2. Auto-detect browser language
+    const browserLang = (navigator.language || '').toLowerCase();
+    return browserLang.startsWith('zh') ? 'zh' : 'en';
+  }
+
+  function applyTranslations(lang: string) {
+    const dict = translations[lang] || translations.en;
+    if (!dict) return;
+
+    // Inject text into all data-i18n elements
+    document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (key && dict[key]) {
+        el.textContent = dict[key];
+      }
     });
 
-    // Update visual active state
-    const currentBtns = document.querySelectorAll('.lang-switch-btn');
-    currentBtns.forEach(btn => {
-      const btnLang = (btn as HTMLElement).dataset.lang;
-      if ((isZH && btnLang === 'zh') || (!isZH && btnLang === 'en')) {
+    // Translate navigation links in header & footer & mobile
+    document.querySelectorAll<HTMLElement>('nav a, footer a').forEach((link) => {
+      const text = link.textContent?.trim() ?? '';
+      const mapKey = navLabelMap[text];
+      if (mapKey && dict[mapKey]) {
+        link.textContent = dict[mapKey];
+      }
+    });
+
+    // Update active button visual
+    document.querySelectorAll<HTMLElement>('[data-lang-btn]').forEach((btn) => {
+      const btnLang = btn.getAttribute('data-lang-btn');
+      if (btnLang === lang) {
         btn.classList.add('text-foreground', 'font-bold');
         btn.classList.remove('text-foreground-muted');
       } else {
@@ -91,10 +200,36 @@ const { class: className } = Astro.props;
         btn.classList.add('text-foreground-muted');
       }
     });
+
+    // Set html lang attribute
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
   }
 
-  // Init on load
-  initLanguageManager();
-  document.addEventListener('astro:after-swap', initLanguageManager);
-  document.addEventListener('astro:page-load', initLanguageManager);
+  function initLanguageSwitcher() {
+    const lang = detectLang();
+    applyTranslations(lang);
+
+    // On first visit with auto-detection, save the choice
+    if (!localStorage.getItem('site_lang')) {
+      localStorage.setItem('site_lang', lang);
+    }
+
+    // Bind click handlers
+    document.querySelectorAll<HTMLElement>('[data-lang-btn]').forEach((btn) => {
+      // Avoid duplicate listeners
+      if (btn.dataset.langInit) return;
+      btn.dataset.langInit = 'true';
+
+      btn.addEventListener('click', () => {
+        const targetLang = btn.getAttribute('data-lang-btn') ?? 'en';
+        localStorage.setItem('site_lang', targetLang);
+        applyTranslations(targetLang);
+      });
+    });
+  }
+
+  // ── Run ──
+  initLanguageSwitcher();
+  document.addEventListener('astro:after-swap', initLanguageSwitcher);
+  document.addEventListener('astro:page-load', initLanguageSwitcher);
 </script>
