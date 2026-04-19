@@ -1,6 +1,11 @@
-# Cloudflare Pages static assets configuration.
-# Build first, then deploy the generated client bundle with `wrangler pages deploy`.
+# Cloudflare Workers configuration for Astro
+# Generated using @astrojs/cloudflare adapter
 
 name = "astro-rocket"
-compatibility_date = "2026-04-20"
-pages_build_output_dir = "dist"
+main = "./dist/_worker.js"
+compatibility_date = "2024-04-03"
+compatibility_flags = [ "nodejs_compat" ]
+
+[assets]
+directory = "./dist/client"
+binding = "ASSETS"
