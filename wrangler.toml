@@ -1,8 +1,8 @@
-# Cloudflare Pages configuration
-# This file is used when deploying to Cloudflare Pages with wrangler
+# Cloudflare Workers static assets configuration.
+# Build first, then deploy the generated client bundle with `wrangler deploy`.
 
 name = "astro-rocket"
-compatibility_date = "2026-01-31"
+compatibility_date = "2026-04-20"
 
-[site]
-bucket = "./dist"
+[assets]
+directory = "./dist/client"

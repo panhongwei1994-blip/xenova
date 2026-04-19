@@ -579,10 +579,20 @@ vercel
 netlify deploy --prod
 ```
 
+### Cloudflare Workers
+
+Build first, then deploy the static client bundle with Wrangler:
+
+```bash
+pnpm build
+wrangler deploy
+```
+
 ### Cloudflare Pages
 
 ```bash
-wrangler pages deploy dist
+pnpm build
+wrangler pages deploy dist/client
 ```
 
 ### Static Export
