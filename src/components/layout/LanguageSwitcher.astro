@@ -1,0 +1,100 @@
+---
+import { cn } from '@/lib/cn';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class={cn("flex items-center text-sm font-medium", className)}>
+  <a
+    href="/zh/"
+    data-lang="zh"
+    class="lang-switch-btn inline-flex items-center justify-center rounded-md px-2 py-1.5 text-foreground-muted hover:text-foreground hover:bg-secondary transition-colors"
+    title="Switch to Chinese"
+  >
+    中
+  </a>
+  <span class="text-border/50 text-xs mx-0.5">/</span>
+  <a
+    href="/"
+    data-lang="en"
+    class="lang-switch-btn inline-flex items-center justify-center rounded-md px-2 py-1.5 text-foreground-muted hover:text-foreground hover:bg-secondary transition-colors"
+    title="Switch to English"
+  >
+    EN
+  </a>
+</div>
+
+<script>
+  function initLanguageManager() {
+    // Current path info
+    const path = window.location.pathname;
+    const isZH = path.startsWith('/zh');
+    
+    // Auto-detect browser language if user hasn't explicitly set one
+    const langSet = localStorage.getItem('user_lang_set');
+    if (!langSet) {
+      const browserLang = navigator.language.toLowerCase();
+      // If browser is Chinese and we are not on Chinese page, redirect
+      if (browserLang.startsWith('zh') && !isZH) {
+        localStorage.setItem('user_lang_set', 'true');
+        window.location.href = '/zh' + (path === '/' ? '' : path);
+        return;
+      }
+      // If browser is English/Other and we are on Chinese page, redirect
+      if (!browserLang.startsWith('zh') && isZH) {
+        localStorage.setItem('user_lang_set', 'true');
+        window.location.href = path.replace(/^\/zh/, '') || '/';
+        return;
+      }
+      // Even if no redirect is needed, mark as checked
+      localStorage.setItem('user_lang_set', 'true');
+    }
+
+    // Handle clicks
+    const buttons = document.querySelectorAll('.lang-switch-btn');
+    buttons.forEach((btn) => {
+      // Remove old listener to avoid duplicates on view transitions
+      const newBtn = btn.cloneNode(true) as HTMLElement;
+      btn.parentNode?.replaceChild(newBtn, btn);
+
+      newBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetLang = newBtn.dataset.lang;
+        localStorage.setItem('user_lang_set', 'true'); // User explicitly clicked
+        
+        let newPath = window.location.pathname;
+        if (targetLang === 'zh') {
+           if (!newPath.startsWith('/zh')) {
+             window.location.href = '/zh' + (newPath === '/' ? '' : newPath);
+           }
+        } else {
+           if (newPath.startsWith('/zh')) {
+             window.location.href = newPath.replace(/^\/zh/, '') || '/';
+           }
+        }
+      });
+    });
+
+    // Update visual active state
+    const currentBtns = document.querySelectorAll('.lang-switch-btn');
+    currentBtns.forEach(btn => {
+      const btnLang = (btn as HTMLElement).dataset.lang;
+      if ((isZH && btnLang === 'zh') || (!isZH && btnLang === 'en')) {
+        btn.classList.add('text-foreground', 'font-bold');
+        btn.classList.remove('text-foreground-muted');
+      } else {
+        btn.classList.remove('text-foreground', 'font-bold');
+        btn.classList.add('text-foreground-muted');
+      }
+    });
+  }
+
+  // Init on load
+  initLanguageManager();
+  document.addEventListener('astro:after-swap', initLanguageManager);
+  document.addEventListener('astro:page-load', initLanguageManager);
+</script>
