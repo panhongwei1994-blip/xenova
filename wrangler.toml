@@ -1,9 +1,9 @@
-# Cloudflare Workers configuration for Astro
-# Generated using @astrojs/cloudflare adapter
+# Cloudflare Workers configuration for Astro 6
+# Uses the new unified entrypoint model
 
 name = "astro-rocket"
-main = "./dist/_worker.js"
-compatibility_date = "2024-04-03"
+main = "@astrojs/cloudflare/entrypoints/server"
+compatibility_date = "2025-01-01"
 compatibility_flags = [ "nodejs_compat" ]
 
 [assets]
