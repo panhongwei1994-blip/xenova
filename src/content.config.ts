@@ -74,6 +74,7 @@ const projects = defineCollection({
       repo: z.string().url().optional(),
       image: image().optional(),
       imageAlt: z.string().optional(),
+      icon: z.string().optional(),
       tags: z.array(z.string()).default([]),
       featured: z.boolean().default(false),
       order: z.number().default(99),
