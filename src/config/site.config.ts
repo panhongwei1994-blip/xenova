@@ -61,7 +61,7 @@ const siteConfig: SiteConfig = {
   name: 'Hi Sora',
   description:
     'Hi Sora — We build independent ordering systems and high-converting websites for restaurants. Drive massive traffic via Google & Facebook.',
-  url: SITE_URL || 'https://example.com',
+  url: SITE_URL || 'https://hisora.cc',
   ogImage: '/og-default.svg',
   author: 'Hi Sora',
   email: 'hello@foodflowdigital.com',

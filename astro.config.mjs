@@ -9,7 +9,7 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
-  site: process.env.SITE_URL || 'https://example.com',
+  site: process.env.SITE_URL || 'https://hisora.cc',
 
   env: {
     schema: {
