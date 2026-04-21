@@ -64,13 +64,13 @@ const siteConfig: SiteConfig = {
   url: SITE_URL || 'https://hisora.cc',
   ogImage: '/og-default.svg',
   author: 'Hi Sora',
-  email: 'hello@foodflowdigital.com',
+  email: 'hello@hisora.cc',
   address: {
     street: '',
-    city: 'Melbourne',
-    state: 'VIC',
+    city: 'Zurich',
+    state: '',
     zip: '',
-    country: 'Australia',
+    country: 'Switzerland',
   },
   socialLinks: [
     'https://github.com/panhongwei1994-blip/xenova',

@@ -57,7 +57,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'about.stat1': '200+ Restaurants Served',
     'about.stat2': 'F&B Specialized',
     'about.stat3': 'Serving Worldwide',
-    'about.stat4': 'Based in Melbourne, AU',
+    'about.stat4': 'Based in Zurich, CH',
 
     // ── Portfolio ──
     'portfolio.badge': 'Portfolio',
@@ -136,7 +136,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'about.stat1': '服务200+餐厅',
     'about.stat2': '餐饮行业专精',
     'about.stat3': '服务遍布全球',
-    'about.stat4': '总部位于墨尔本',
+    'about.stat4': '总部位于瑞士苏黎世',
 
     // ── 案例展示 ──
     'portfolio.badge': '案例展示',
