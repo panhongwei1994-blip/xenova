@@ -9,28 +9,25 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
-import TypingEffect from '@/components/ui/TypingEffect.astro';
-import TechStack from '@/components/landing/TechStack.astro';
+import { t } from '@/config/i18n.config';
 ---
 <PageLayout
-  title="About Astro Rocket — Web Designer & Developer | Veghel"
-  description="Designer & developer — Crafting modern web experiences shaped by clean design, solid structure, and attention to detail."
+  title="About Hi Sora — Restaurant Digital Experts"
+  description="Hi Sora — We craft high-converting websites and ordering systems for restaurants."
 >
   <Hero layout="centered" size="sm">
     <Badge slot="badge" variant="brand" pill>
       <Icon name="user" size="sm" />
-      About me
+      <span data-i18n="about.page.badge">{t('about.page.badge')}</span>
     </Badge>
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
-        <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "Claude Code User", "UI / UX Enthusiast", "Blogger", "Coffee lover"]} />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]" data-i18n="about.page.title">
+        {t('about.page.title')}
       </span>
     </h1>
 
-    <p slot="description">
-      I care about both sides of the craft — how a site looks and how it
-      performs. Here's a bit more about how I think and work.
+    <p slot="description" data-i18n="about.page.desc">
+      {t('about.page.desc')}
     </p>
   </Hero>
   <!-- What's possible now -->
@@ -40,16 +37,18 @@ import TechStack from '@/components/landing/TechStack.astro';
         <!-- Left: text -->
         <div class="flex flex-col gap-4" data-reveal>
           <div class="flex flex-col gap-6">
-            <Badge variant="brand" pill class="self-start">The partnership</Badge>
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Meet the team:<br /> Astro Rocket & Claude
+            <Badge variant="brand" pill class="self-start">
+              <span data-i18n="about.page.partnership.badge">{t('about.page.partnership.badge')}</span>
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="about.page.partnership.title">
+              {t('about.page.partnership.title')}
             </h2>
           </div>
-          <p class="text-lg text-foreground-muted leading-relaxed">
-           I'm a web designer and developer with 16 years of hands‑on experience. Today I work alongside <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors">Claude</a> — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
+          <p class="text-lg text-foreground-muted leading-relaxed" data-i18n="about.page.partnership.p1">
+           {t('about.page.partnership.p1')}
           </p>
-          <p class="text-lg text-foreground-muted leading-relaxed">
-            This isn't about automating the work — it's about raising the standard of it. Every design decision still comes from craft and experience. Every line of code is still written with intention. Claude helps me think more rigorously, not less. The work stays mine. The thinking gets sharper.
+          <p class="text-lg text-foreground-muted leading-relaxed" data-i18n="about.page.partnership.p2">
+            {t('about.page.partnership.p2')}
           </p>
         </div>
         <!-- Right: two stacked partner cards -->
@@ -60,39 +59,41 @@ import TechStack from '@/components/landing/TechStack.astro';
                 <Icon name="code-2" size="md" />
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Web Designer & Developer</p>
-                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
+                <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">
+                  <span data-i18n="nav.services">{t('nav.services')}</span>
+                </p>
+                <h3 class="text-base font-semibold text-foreground">Custom Architecture</h3>
                 <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
+                  Fast, reliable bespoke ordering websites designed for maximum peak hours traffic without crashing.
                 </p>
                 <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Astro</Badge>
-                  <Badge size="sm" variant="brand">Tailwind</Badge>
-                  <Badge size="sm" variant="brand">TypeScript</Badge>
+                  <Badge size="sm" variant="brand">Performance</Badge>
+                  <Badge size="sm" variant="brand">Reliability</Badge>
+                  <Badge size="sm" variant="brand">UX/UI</Badge>
                 </div>
               </div>
             </div>
           </Card>
-          <Card variant="elevated" hover href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="group flex-1 flex flex-col justify-center">
+          <Card variant="elevated" hover class="group flex-1 flex flex-col justify-center">
             <div class="flex items-start justify-between gap-4">
               <div class="flex items-start gap-4 flex-1 min-w-0">
                 <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
                   <Icon name="sparkles" size="md" />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">AI Thinking Partner</p>
-                <h3 class="text-base font-semibold text-foreground">Claude</h3>
+                  <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">
+                    Google & Meta Ads
+                  </p>
+                <h3 class="text-base font-semibold text-foreground">Marketing & Growth</h3>
                 <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
+                  Data-driven campaigns to drive actual foot traffic. Let your community know why your food is special.
                 </p>
                 <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Design review</Badge>
-                  <Badge size="sm" variant="brand">Code QA</Badge>
-                  <Badge size="sm" variant="brand">Deep thinking</Badge>
+                  <Badge size="sm" variant="brand">Local SEO</Badge>
+                  <Badge size="sm" variant="brand">Retargeting</Badge>
                 </div>
               </div>
               </div>
-              <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
             </div>
           </Card>
         </div>
@@ -104,13 +105,15 @@ import TechStack from '@/components/landing/TechStack.astro';
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
         <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>My Process</Badge>
-          <h2 class="font-display text-4xl font-bold text-foreground">
-            How I Work
+          <Badge variant="brand" pill>
+            <span data-i18n="about.page.values.badge">{t('about.page.values.badge')}</span>
+          </Badge>
+          <h2 class="font-display text-4xl font-bold text-foreground" data-i18n="about.page.values.title">
+            {t('about.page.values.title')}
           </h2>
         </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance" data-i18n="about.page.values.desc">
+          {t('about.page.values.desc')}
         </p>
       </div>
       <div class="grid gap-8 md:grid-cols-3" data-reveal data-reveal-delay="1">
@@ -120,9 +123,9 @@ import TechStack from '@/components/landing/TechStack.astro';
               <Icon name="zap" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Performance First</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Fast sites rank better, convert better, and keep users happy. I optimise for speed from the ground up.
+              <h3 class="text-base font-semibold text-foreground" data-i18n="about.page.v1.title">{t('about.page.v1.title')}</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="about.page.v1.desc">
+                {t('about.page.v1.desc')}
               </p>
             </div>
           </div>
@@ -133,9 +136,9 @@ import TechStack from '@/components/landing/TechStack.astro';
               <Icon name="award" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Experience That Shows</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Sixteen years of experience means I know what works, what doesn't, and exactly what your project needs.
+              <h3 class="text-base font-semibold text-foreground" data-i18n="about.page.v2.title">{t('about.page.v2.title')}</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="about.page.v2.desc">
+                {t('about.page.v2.desc')}
               </p>
             </div>
           </div>
@@ -146,9 +149,9 @@ import TechStack from '@/components/landing/TechStack.astro';
               <Icon name="rocket" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Modern from the Ground Up</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Built with today's tooling. Fast, maintainable, and ready for whatever comes next.
+              <h3 class="text-base font-semibold text-foreground" data-i18n="about.page.v3.title">{t('about.page.v3.title')}</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="about.page.v3.desc">
+                {t('about.page.v3.desc')}
               </p>
             </div>
           </div>
@@ -156,12 +159,6 @@ import TechStack from '@/components/landing/TechStack.astro';
       </div>
     </div>
   </section>
-  <!-- My Stack -->
-  <TechStack
-    badge="Tools & Tech"
-    title="My Stack"
-    description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
-  />
   <!-- FAQ -->
   <section class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">

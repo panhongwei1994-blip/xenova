@@ -59,6 +59,24 @@ export const translations: Record<Locale, TranslationMap> = {
     'about.stat3': 'Serving Worldwide',
     'about.stat4': 'Based in Zurich, CH',
 
+    // ── About Page ──
+    'about.page.badge': 'About Us',
+    'about.page.title': 'Hi Sora — F&B Digital Experts',
+    'about.page.desc': 'We craft high-converting websites and ordering systems for restaurants. We know what it takes to succeed in the food industry.',
+    'about.page.partnership.badge': 'Our Approach',
+    'about.page.partnership.title': 'Technology & Marketing Combined',
+    'about.page.partnership.p1': "With deep roots in the F&B industry, Hi Sora doesn't just build websites. We create digital ecosystems that drive actual reservations and delivery orders without the heavy 30% commission fees.",
+    'about.page.partnership.p2': 'Every design decision is optimized for conversion. Every ad campaign targets hungry customers in your neighborhood. We ensure your brand stands out, maximizing your profit margins.',
+    'about.page.values.badge': 'Our Values',
+    'about.page.values.title': 'How We Work',
+    'about.page.values.desc': "We focus strictly on results. If it doesn't increase your restaurant's bottom line, we don't do it.",
+    'about.page.v1.title': 'Performance First',
+    'about.page.v1.desc': 'Fast menus rank better, convert better, and keep hungry visitors happy.',
+    'about.page.v2.title': 'ROI Focused',
+    'about.page.v2.desc': 'Every marketing dollar spent must show clear, measurable returns for your venue.',
+    'about.page.v3.title': 'Restaurant Specialists',
+    'about.page.v3.desc': 'We solely work with F&B. We understand POS systems, kitchen operations, and hospitality.',
+
     // ── Portfolio ──
     'portfolio.badge': 'Portfolio',
     'portfolio.title': 'Our Work',
@@ -137,6 +155,24 @@ export const translations: Record<Locale, TranslationMap> = {
     'about.stat2': '餐饮行业专精',
     'about.stat3': '服务遍布全球',
     'about.stat4': '总部位于瑞士苏黎世',
+
+    // ── About Page ──
+    'about.page.badge': '关于我们',
+    'about.page.title': 'Hi Sora — 餐饮数字化增长专家',
+    'about.page.desc': '为您打造高转化率的品牌官网和独立外卖系统。我们深知餐饮业成功的秘诀。',
+    'about.page.partnership.badge': '我们的方案',
+    'about.page.partnership.title': '技术与营销的完美结合',
+    'about.page.partnership.p1': '凭借在餐饮行业的深厚经验，Hi Sora 不仅是建站。我们为您打造能带来实际预订和外卖订单的数字生态系统，助您摆脱30%的高昂平台抽成。',
+    'about.page.partnership.p2': '每一个设计决策都为转化率而生。每一次广告投放都精准定位您附近的潜在食客。我们帮助您的品牌脱颖而出，利润最大化。',
+    'about.page.values.badge': '我们的价值观',
+    'about.page.values.title': '我们的工作方式',
+    'about.page.values.desc': '我们严格专注于结果。如果不能帮您的餐厅增加净利润，我们就绝对不会去做。',
+    'about.page.v1.title': '性能为王',
+    'about.page.v1.desc': '极速加载的电子菜单排名更高、转化率更好，顾客更满意。',
+    'about.page.v2.title': '关注投资回报率',
+    'about.page.v2.desc': '花的每一分营销预算，都必须为您门店带来清晰、可衡量的真实利润。',
+    'about.page.v3.title': '深耕餐饮业',
+    'about.page.v3.desc': '我们仅服务于餐饮行业。我们真正懂您的POS系统、后厨动线及待客之道。',
 
     // ── 案例展示 ──
     'portfolio.badge': '案例展示',
