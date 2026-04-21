@@ -11,6 +11,7 @@ import { t } from '@/config/i18n.config';
 import { Image } from 'astro:assets';
 import Dialog from '@/components/ui/overlay/Dialog/Dialog.astro';
 import RoiCalculator from '@/components/landing/RoiCalculator.astro';
+import PricingCards from '@/components/landing/PricingCards.astro';
 
 const projectItems = await getCollection('projects');
 const featuredProjects = projectItems
@@ -23,6 +24,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
   })
   .slice(0, 3);
+
+const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3', 'pricing.trust.4'];
 ---
 
 <LandingLayout
@@ -172,6 +175,34 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           </Card>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="relative z-10 border-t border-border bg-background-secondary py-[var(--space-section-md)]">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill><span data-i18n="nav.pricing">{t('nav.pricing')}</span></Badge>
+          <h2 class="font-display text-3xl font-bold text-foreground md:text-4xl">
+            <span data-i18n="pricing.page.title.lead">{t('pricing.page.title.lead')}</span>{' '}
+            <span class="text-brand-500" data-i18n="pricing.page.title.highlight">{t('pricing.page.title.highlight')}</span>
+          </h2>
+        </div>
+        <p class="max-w-3xl text-lg text-foreground-muted text-pretty" data-i18n="pricing.page.subtitle">
+          {t('pricing.page.subtitle')}
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3" data-reveal data-reveal-delay="1">
+        {pricingTrustKeys.map((key) => (
+          <Badge variant="brand" pill class="bg-background text-foreground shadow-sm">
+            <span data-i18n={key}>{t(key)}</span>
+          </Badge>
+        ))}
+      </div>
+
+      <PricingCards />
     </div>
   </section>
 

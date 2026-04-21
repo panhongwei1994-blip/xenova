@@ -1,0 +1,222 @@
+---
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import { t } from '@/config/i18n.config';
+
+const includedKeys = [
+  'pricing.included.1',
+  'pricing.included.2',
+  'pricing.included.3',
+];
+
+const starterFeatureKeys = [
+  'pricing.starter.features.1',
+  'pricing.starter.features.2',
+  'pricing.starter.features.3',
+  'pricing.starter.features.4',
+  'pricing.starter.features.5',
+  'pricing.starter.features.6',
+  'pricing.starter.features.7',
+];
+
+const proFeatureKeys = [
+  'pricing.pro.features.0',
+  'pricing.pro.features.1',
+  'pricing.pro.features.2',
+  'pricing.pro.features.3',
+  'pricing.pro.features.4',
+  'pricing.pro.features.5',
+  'pricing.pro.features.6',
+  'pricing.pro.features.7',
+  'pricing.pro.features.8',
+];
+---
+
+<div class="grid gap-6 lg:grid-cols-2">
+  <Card
+    variant="elevated"
+    padding="lg"
+    hover
+    class="flex h-full flex-col gap-8 border border-border/80"
+    data-reveal
+  >
+    <div class="flex flex-col gap-5">
+      <div class="flex items-center justify-between gap-3">
+        <Badge variant="brand" pill class="self-start">
+          <span data-i18n="pricing.starter.label">{t('pricing.starter.label')}</span>
+        </Badge>
+        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500">
+          <Icon name="store" size="md" />
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <h3 class="font-display text-2xl font-bold text-foreground text-balance" data-i18n="pricing.starter.name">
+            {t('pricing.starter.name')}
+          </h3>
+          <p class="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-foreground-muted" data-i18n="pricing.starter.eyebrow">
+            {t('pricing.starter.eyebrow')}
+          </p>
+        </div>
+
+        <div class="border-b border-border pb-5">
+          <div class="font-display text-5xl font-bold tracking-tight text-foreground tabular-nums">
+            $498
+          </div>
+          <p class="mt-2 text-sm text-foreground-muted" data-i18n="pricing.card.note">
+            {t('pricing.card.note')}
+          </p>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-brand-500/20 bg-brand-500/6 p-5">
+        <p class="text-sm font-semibold text-foreground" data-i18n="pricing.included.title">
+          {t('pricing.included.title')}
+        </p>
+        <ul class="mt-4 space-y-3">
+          {includedKeys.map((key) => (
+            <li class="flex items-start gap-3 text-sm text-foreground-muted">
+              <Icon name="badge-check" size="sm" class="mt-0.5 text-brand-500" />
+              <span class="min-w-0" data-i18n={key}>{t(key)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-1 flex-col gap-6">
+      <div>
+        <h4 class="font-display text-lg font-semibold text-foreground" data-i18n="pricing.features.title">
+          {t('pricing.features.title')}
+        </h4>
+        <ul class="mt-4 space-y-3">
+          {starterFeatureKeys.map((key) => (
+            <li class="flex items-start gap-3 text-sm leading-relaxed text-foreground-muted">
+              <Icon name="check" size="sm" class="mt-0.5 text-brand-500" />
+              <span class="min-w-0" data-i18n={key}>{t(key)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mt-auto">
+        <Button variant="outline" size="lg" href="/contact" class="w-full justify-center">
+          <span data-i18n="pricing.cta">{t('pricing.cta')}</span>
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </div>
+  </Card>
+
+  <Card
+    variant="elevated"
+    padding="lg"
+    hover
+    class="relative flex h-full flex-col gap-8 border border-brand-500/30 shadow-[0_24px_80px_-48px_color-mix(in_oklch,var(--color-brand-500)_60%,transparent)]"
+    data-reveal
+    data-reveal-delay="1"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/70 to-transparent"
+      aria-hidden="true"
+    />
+
+    <div class="flex flex-col gap-5">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <Badge variant="brand" pill>
+            <span data-i18n="pricing.pro.label">{t('pricing.pro.label')}</span>
+          </Badge>
+          <Badge variant="success" pill>
+            <span data-i18n="pricing.pro.recommended">{t('pricing.pro.recommended')}</span>
+          </Badge>
+        </div>
+        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500">
+          <Icon name="rocket" size="md" />
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <h3 class="font-display text-2xl font-bold text-foreground text-balance" data-i18n="pricing.pro.name">
+            {t('pricing.pro.name')}
+          </h3>
+          <p class="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-foreground-muted" data-i18n="pricing.pro.eyebrow">
+            {t('pricing.pro.eyebrow')}
+          </p>
+        </div>
+
+        <div class="border-b border-border pb-5">
+          <div class="font-display text-5xl font-bold tracking-tight text-foreground tabular-nums">
+            $998
+          </div>
+          <p class="mt-2 text-sm text-foreground-muted" data-i18n="pricing.card.note">
+            {t('pricing.card.note')}
+          </p>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-brand-500/20 bg-brand-500/6 p-5">
+        <p class="text-sm font-semibold text-foreground" data-i18n="pricing.included.title">
+          {t('pricing.included.title')}
+        </p>
+        <ul class="mt-4 space-y-3">
+          {includedKeys.map((key) => (
+            <li class="flex items-start gap-3 text-sm text-foreground-muted">
+              <Icon name="badge-check" size="sm" class="mt-0.5 text-brand-500" />
+              <span class="min-w-0" data-i18n={key}>{t(key)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-1 flex-col gap-6">
+      <div>
+        <h4 class="font-display text-lg font-semibold text-foreground" data-i18n="pricing.features.title">
+          {t('pricing.features.title')}
+        </h4>
+        <ul class="mt-4 space-y-3">
+          {proFeatureKeys.map((key, index) => (
+            <li class="flex items-start gap-3 text-sm leading-relaxed text-foreground-muted">
+              <Icon
+                name={index === 0 ? 'plus' : 'check'}
+                size="sm"
+                class={`mt-0.5 ${index === 0 ? 'text-foreground' : 'text-brand-500'}`}
+              />
+              <span class="min-w-0" data-i18n={key}>{t(key)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-border bg-background-secondary/80 p-5">
+        <p class="text-sm font-semibold text-foreground" data-i18n="pricing.pro.demo.title">
+          {t('pricing.pro.demo.title')}
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-foreground-muted">
+          <span data-i18n="pricing.pro.demo.body.before">{t('pricing.pro.demo.body.before')}</span>
+          <a
+            href="https://ramen.hisora.cc"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ml-1 inline-flex items-center gap-1 font-medium text-brand-500 transition-colors hover:text-brand-400"
+          >
+            <span translate="no">ramen.hisora.cc</span>
+            <Icon name="arrow-up-right" size="xs" />
+          </a>
+        </p>
+      </div>
+
+      <div class="mt-auto">
+        <Button size="lg" href="/contact" class="w-full justify-center">
+          <span data-i18n="pricing.cta">{t('pricing.cta')}</span>
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </div>
+  </Card>
+</div>
