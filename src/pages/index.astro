@@ -33,7 +33,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   includeProfessionalServiceSchema={true}
 >
   <!-- Hero -->
-  <Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator descriptionClass="max-w-3xl">
+  <Hero layout="centered" size="xl" class="hero-dark-gradient !pt-28 md:!pt-[calc(var(--space-page-top)_+_var(--space-16))]" showScrollIndicator descriptionClass="max-w-3xl">
     <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">
       <span data-i18n="hero.badge">{t('hero.badge')}</span>
     </Badge>
