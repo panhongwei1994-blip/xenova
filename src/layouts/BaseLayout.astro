@@ -59,7 +59,7 @@ if (includeProfessionalServiceSchema) {
 <html lang="en" class="scroll-smooth dark" data-theme="blue">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Favicon -->
@@ -175,7 +175,7 @@ if (includeProfessionalServiceSchema) {
     </script>
   </head>
 
-  <body class="min-h-screen bg-background text-foreground antialiased" data-eager-reveal={eagerReveal ? '' : undefined}>
+  <body class="min-h-screen bg-background text-foreground antialiased overflow-x-hidden touch-pan-y" data-eager-reveal={eagerReveal ? '' : undefined}>
     <!-- Skip to content link -->
     <a
       href="#main-content"
