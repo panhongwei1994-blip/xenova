@@ -54,9 +54,7 @@ import { t } from '@/config/i18n.config';
 
     function formatCurrency(num: number) {
       if (typeof Intl !== 'undefined') {
-        const lang = document.documentElement.lang === 'zh-CN' ? 'zh-CN' : 'en-US';
-        const currency = document.documentElement.lang === 'zh-CN' ? 'CNY' : 'USD';
-        return new Intl.NumberFormat(lang, { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(num);
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
       }
       return '$' + num.toLocaleString();
     }
