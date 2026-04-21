@@ -19,8 +19,8 @@ export interface TranslationMap {
 export const translations: Record<Locale, TranslationMap> = {
   en: {
     // ── Site-wide ──
-    'site.name': 'FoodFlow Digital',
-    'site.description': 'We build independent ordering systems and high-converting websites for restaurants. Drive massive traffic via Google & Facebook.',
+    'site.name': 'Hi Sora',
+    'site.description': 'Hi Sora — We build independent ordering systems and high-converting websites for restaurants.',
 
     // ── Navigation ──
     'nav.services': 'Services',
@@ -93,12 +93,12 @@ export const translations: Record<Locale, TranslationMap> = {
     'cta.button2': 'Learn More',
 
     // ── Footer ──
-    'footer.copyright': '© {year} FoodFlow Digital. All rights reserved.',
+    'footer.copyright': '© {year} Hi Sora. All rights reserved.',
   },
 
   zh: {
     // ── 全站 ──
-    'site.name': 'FoodFlow Digital',
+    'site.name': 'Hi Sora',
     'site.description': '为您搭建独立点餐系统与高转化网站。通过谷歌和Facebook精准引流，助您餐厅业绩翻倍。',
 
     // ── 导航 ──
@@ -172,7 +172,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'cta.button2': '了解更多',
 
     // ── Footer ──
-    'footer.copyright': '© {year} FoodFlow Digital. 保留所有权利。',
+    'footer.copyright': '© {year} Hi Sora. 保留所有权利。',
   },
 };
 

@@ -58,12 +58,12 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'FoodFlow Digital',
+  name: 'Hi Sora',
   description:
-    'FoodFlow Digital — We build independent ordering systems and high-converting websites for restaurants. Drive massive traffic via Google & Facebook.',
+    'Hi Sora — We build independent ordering systems and high-converting websites for restaurants. Drive massive traffic via Google & Facebook.',
   url: SITE_URL || 'https://example.com',
   ogImage: '/og-default.svg',
-  author: 'FoodFlow Digital',
+  author: 'Hi Sora',
   email: 'hello@foodflowdigital.com',
   address: {
     street: '',
@@ -87,7 +87,7 @@ const siteConfig: SiteConfig = {
   blogImageOverlay: true,
   branding: {
     logo: {
-      alt: 'FoodFlow Digital',
+      alt: 'Hi Sora',
       imageUrl: '/favicon.svg',
     },
     favicon: {
