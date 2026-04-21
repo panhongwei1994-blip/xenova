@@ -73,7 +73,21 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
+        <!-- Branded Delivery System -->
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="shopping-cart" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground" data-i18n="services.2.title">{t('services.2.title')}</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.2.desc">
+                {t('services.2.desc')}
+              </p>
+            </div>
+          </div>
+        </Card>
+
         <!-- Mobile-First Website -->
         <Card hover>
           <div class="flex items-start gap-4">
@@ -84,21 +98,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               <h3 class="text-base font-semibold text-foreground" data-i18n="services.1.title">{t('services.1.title')}</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.1.desc">
                 {t('services.1.desc')}
-              </p>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Independent Ordering -->
-        <Card hover>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="shopping-cart" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground" data-i18n="services.2.title">{t('services.2.title')}</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.2.desc">
-                {t('services.2.desc')}
               </p>
             </div>
           </div>
@@ -122,7 +121,53 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
- <!-- About Teaser -->
+  <!-- Portfolio -->
+  <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill><span data-i18n="portfolio.badge">{t('portfolio.badge')}</span></Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="portfolio.title">
+            {t('portfolio.title')}
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto" data-i18n="portfolio.subtitle">
+          {t('portfolio.subtitle')}
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
+        {featuredProjects.map((project) => (
+          <Card 
+            variant="elevated" 
+            hover 
+            padding="lg" 
+            href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="group flex flex-col"
+          >
+            <div class="flex flex-1 flex-col">
+              <div class="mb-3 flex items-start justify-between gap-4">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="layers" size="sm" />
+                </div>
+                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+              </div>
+              <div class="flex items-baseline gap-2">
+                <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
+                {project.data.year && (
+                  <span class="text-xs text-foreground-muted">{project.data.year}</span>
+                )}
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Teaser -->
   <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2">
@@ -165,50 +210,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             </div>
           </div>
         </Card>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio -->
-  <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill><span data-i18n="portfolio.badge">{t('portfolio.badge')}</span></Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="portfolio.title">
-            {t('portfolio.title')}
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto" data-i18n="portfolio.subtitle">
-          {t('portfolio.subtitle')}
-        </p>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
-        {featuredProjects.map((project) => (
-          <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col">
-            <div class="flex flex-1 flex-col">
-              <div class="mb-3 flex items-start justify-between gap-4">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                  <Icon name="layers" size="sm" />
-                </div>
-                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
-              </div>
-              <div class="mb-2 flex items-baseline gap-2">
-                <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
-                {project.data.year && (
-                  <span class="text-xs text-foreground-muted">{project.data.year}</span>
-                )}
-              </div>
-              <p class="text-sm text-foreground-muted leading-relaxed mb-4 flex-1">{project.data.description}</p>
-              <div class="flex flex-wrap gap-1.5">
-                {project.data.tags.map((tag) => (
-                  <Badge variant="brand">{tag}</Badge>
-                ))}
-              </div>
-            </div>
-          </Card>
-        ))}
       </div>
     </div>
   </section>
