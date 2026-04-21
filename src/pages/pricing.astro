@@ -1,0 +1,251 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { Hero } from '@/components/hero';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import { t } from '@/config/i18n.config';
+
+const includedItems = [
+  'Free Cloudflare hosting (global CDN)',
+  'Free subdomain: yourname.hisora.cc',
+  'Free SSL certificate',
+  'Mobile-optimised',
+];
+
+const starterFeatures = [
+  'Professional bilingual website (Chinese + English)',
+  'Menu showcase with photos & descriptions',
+  'Opening hours, address & Google Maps embed',
+  'Online table reservation system',
+  'Customer reviews section',
+  'Brand story / About page',
+  'Social media links (WeChat, Instagram, Facebook etc.)',
+  'WhatsApp / contact button',
+];
+
+const proFeatures = [
+  'Everything in Starter, plus:',
+  'Online ordering system (delivery + pickup)',
+  'Online payment (credit card, multi-platform)',
+  'Order management dashboard',
+  'Cart & real-time checkout',
+  'Menu category management',
+  'Customer notification system',
+  '0% platform commission — keep 100% of revenue',
+  'No Uber Eats, no DoorDash, no middleman',
+];
+
+const trustItems = [
+  'Free Hosting',
+  'Free Subdomain',
+  'One-Time Payment',
+  'Yours Forever',
+];
+---
+
+<PageLayout
+  title="Pricing — Hi Sora"
+  description="Simple one-time pricing for restaurant showcase sites and delivery ordering systems."
+>
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="badge-dollar-sign" size="sm" />
+      <span data-i18n="nav.pricing">{t('nav.pricing')}</span>
+    </Badge>
+
+    <h1 slot="title" class="text-balance">
+      Simple, Honest <span class="text-brand-500">Pricing</span>
+    </h1>
+
+    <p slot="description" class="text-pretty">
+      One-time payment. No subscriptions. No hidden fees. No renewal charges.
+    </p>
+  </Hero>
+
+  <section class="border-t border-border bg-background-secondary py-[var(--space-section-sm)]">
+    <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-3 px-6">
+      {trustItems.map((item) => (
+        <Badge variant="brand" pill class="bg-background text-foreground shadow-sm">
+          {item}
+        </Badge>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-background py-[var(--space-section-md)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <Card
+          variant="elevated"
+          padding="lg"
+          hover
+          class="flex h-full flex-col gap-8 border border-border/80"
+          data-reveal
+        >
+          <div class="flex flex-col gap-5">
+            <div class="flex items-center justify-between gap-3">
+              <Badge variant="brand" pill class="self-start">Starter Plan</Badge>
+              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500">
+                <Icon name="store" size="md" />
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div>
+                <h2 class="font-display text-2xl font-bold text-foreground text-balance">
+                  餐厅展示版 · Showcase Site
+                </h2>
+                <p class="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-foreground-muted">
+                  Starter package for restaurants that need a polished digital front door
+                </p>
+              </div>
+
+              <div class="border-b border-border pb-5">
+                <div class="font-display text-5xl font-bold tracking-tight text-foreground tabular-nums">
+                  $498
+                </div>
+                <p class="mt-2 text-sm text-foreground-muted">
+                  One-time · No renewal · No hidden fees
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl border border-brand-500/20 bg-brand-500/6 p-5">
+              <p class="text-sm font-semibold text-foreground">Free Included</p>
+              <ul class="mt-4 space-y-3">
+                {includedItems.map((item) => (
+                  <li class="flex items-start gap-3 text-sm text-foreground-muted">
+                    <Icon name="badge-check" size="sm" class="mt-0.5 text-brand-500" />
+                    <span class="min-w-0">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-1 flex-col gap-6">
+            <div>
+              <h3 class="font-display text-lg font-semibold text-foreground">What’s Included</h3>
+              <ul class="mt-4 space-y-3">
+                {starterFeatures.map((feature) => (
+                  <li class="flex items-start gap-3 text-sm leading-relaxed text-foreground-muted">
+                    <Icon name="check" size="sm" class="mt-0.5 text-brand-500" />
+                    <span class="min-w-0">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-auto">
+              <Button variant="outline" size="lg" href="/contact" class="w-full justify-center">
+                Get Started
+                <Icon name="arrow-right" size="sm" />
+              </Button>
+            </div>
+          </div>
+        </Card>
+
+        <Card
+          variant="elevated"
+          padding="lg"
+          hover
+          class="relative flex h-full flex-col gap-8 border border-brand-500/30 shadow-[0_24px_80px_-48px_color-mix(in_oklch,var(--color-brand-500)_60%,transparent)]"
+          data-reveal
+          data-reveal-delay="1"
+        >
+          <div
+            class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/70 to-transparent"
+            aria-hidden="true"
+          />
+
+          <div class="flex flex-col gap-5">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex flex-wrap items-center gap-2">
+                <Badge variant="brand" pill>Pro Plan</Badge>
+                <Badge variant="success" pill>Most Popular</Badge>
+              </div>
+              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500">
+                <Icon name="rocket" size="md" />
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div>
+                <h2 class="font-display text-2xl font-bold text-foreground text-balance">
+                  外卖电商版 · Delivery &amp; Order Site
+                </h2>
+                <p class="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-foreground-muted">
+                  Built for restaurants ready to own delivery, pickup, payments, and repeat customers
+                </p>
+              </div>
+
+              <div class="border-b border-border pb-5">
+                <div class="font-display text-5xl font-bold tracking-tight text-foreground tabular-nums">
+                  $998
+                </div>
+                <p class="mt-2 text-sm text-foreground-muted">
+                  One-time · No renewal · No hidden fees
+                </p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl border border-brand-500/20 bg-brand-500/6 p-5">
+              <p class="text-sm font-semibold text-foreground">Free Included</p>
+              <ul class="mt-4 space-y-3">
+                {includedItems.map((item) => (
+                  <li class="flex items-start gap-3 text-sm text-foreground-muted">
+                    <Icon name="badge-check" size="sm" class="mt-0.5 text-brand-500" />
+                    <span class="min-w-0">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-1 flex-col gap-6">
+            <div>
+              <h3 class="font-display text-lg font-semibold text-foreground">What’s Included</h3>
+              <ul class="mt-4 space-y-3">
+                {proFeatures.map((feature, index) => (
+                  <li class="flex items-start gap-3 text-sm leading-relaxed text-foreground-muted">
+                    <Icon
+                      name={index === 0 ? 'plus' : 'check'}
+                      size="sm"
+                      class={`mt-0.5 ${index === 0 ? 'text-foreground' : 'text-brand-500'}`}
+                    />
+                    <span class="min-w-0">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="rounded-3xl border border-border bg-background-secondary/80 p-5">
+              <p class="text-sm font-semibold text-foreground">Live Demo</p>
+              <p class="mt-2 text-sm leading-relaxed text-foreground-muted">
+                See a live example of the Pro plan experience at
+                <a
+                  href="https://ramen.hisora.cc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="ml-1 inline-flex items-center gap-1 font-medium text-brand-500 transition-colors hover:text-brand-400"
+                >
+                  ramen.hisora.cc
+                  <Icon name="arrow-up-right" size="xs" />
+                </a>
+              </p>
+            </div>
+
+            <div class="mt-auto">
+              <Button size="lg" href="/contact" class="w-full justify-center">
+                Get Started
+                <Icon name="arrow-right" size="sm" />
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+</PageLayout>

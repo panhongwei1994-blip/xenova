@@ -25,6 +25,7 @@ export const translations: Record<Locale, TranslationMap> = {
     // ── Navigation ──
     'nav.services': 'Services',
     'nav.portfolio': 'Portfolio',
+    'nav.pricing': 'Pricing',
     'nav.about': 'About',
     'nav.contact': 'Contact',
 
@@ -131,6 +132,7 @@ export const translations: Record<Locale, TranslationMap> = {
     // ── 导航 ──
     'nav.services': '服务',
     'nav.portfolio': '案例展示',
+    'nav.pricing': '定价',
     'nav.about': '关于我们',
     'nav.contact': '联系我们',
 
