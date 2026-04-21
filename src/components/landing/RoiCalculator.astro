@@ -1,0 +1,96 @@
+---
+import { t } from '@/config/i18n.config';
+---
+<div class="roi-calculator flex flex-col gap-6">
+  <div>
+    <label class="block text-sm font-medium text-foreground mb-4 font-display">
+      <span data-i18n="roi.revenue_label">{t('roi.revenue_label')}</span>: <span id="roi-revenue-val" class="font-bold text-brand-500 bg-brand-500/10 px-2 py-1 rounded-md">$10,000</span>
+    </label>
+    <div class="px-2">
+      <input type="range" id="roi-revenue" min="5000" max="100000" step="1000" value="10000" class="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-brand-500" />
+      <div class="flex justify-between text-xs text-foreground-muted mt-2">
+        <span>$5k</span>
+        <span>$100k+</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-foreground mb-4 font-display">
+      <span data-i18n="roi.commission_label">{t('roi.commission_label')}</span>: <span id="roi-commission-val" class="font-bold text-brand-500 bg-brand-500/10 px-2 py-1 rounded-md">30%</span>
+    </label>
+    <div class="px-2">
+      <input type="range" id="roi-commission" min="15" max="40" step="1" value="30" class="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-brand-500" />
+      <div class="flex justify-between text-xs text-foreground-muted mt-2">
+        <span>15%</span>
+        <span>40%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 p-8 rounded-2xl bg-gradient-to-br from-brand-500/10 to-brand-500/5 border border-brand-500/20 text-center shadow-inner relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+    <p class="text-sm font-medium text-foreground-muted mb-2 relative z-10" data-i18n="roi.savings_label">{t('roi.savings_label')}</p>
+    <p class="font-display text-5xl md:text-6xl font-bold tracking-tight text-brand-500 my-4 drop-shadow-sm relative z-10" id="roi-savings">$36,000</p>
+    <p class="text-xs text-foreground-muted/80 max-w-xs mx-auto mt-2 relative z-10" data-i18n="roi.savings_desc">{t('roi.savings_desc')}</p>
+  </div>
+  
+  <div class="mt-2 flex flex-col items-center">
+    <a href="/contact" class="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-md font-bold ring-offset-background transition-all hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-brand-500 text-brand-foreground hover:bg-brand-600 shadow-lg shadow-brand-500/20 h-14 px-10 w-full">
+      <span data-i18n="roi.contact_btn">{t('roi.contact_btn')}</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  function initRoiCalculator() {
+    const revInput = document.getElementById('roi-revenue') as HTMLInputElement;
+    const comInput = document.getElementById('roi-commission') as HTMLInputElement;
+    const revVal = document.getElementById('roi-revenue-val');
+    const comVal = document.getElementById('roi-commission-val');
+    const savingsEl = document.getElementById('roi-savings');
+    
+    if (!revInput || !comInput || !revVal || !comVal || !savingsEl) return;
+
+    function formatCurrency(num: number) {
+      if (typeof Intl !== 'undefined') {
+        const lang = document.documentElement.lang === 'zh-CN' ? 'zh-CN' : 'en-US';
+        const currency = document.documentElement.lang === 'zh-CN' ? 'CNY' : 'USD';
+        return new Intl.NumberFormat(lang, { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(num);
+      }
+      return '$' + num.toLocaleString();
+    }
+
+    function calculate() {
+      const revenue = parseInt(revInput.value, 10);
+      const commission = parseInt(comInput.value, 10);
+      
+      revVal.textContent = formatCurrency(revenue);
+      comVal.textContent = `${commission}%`;
+      
+      const yearlySavings = revenue * (commission / 100) * 12;
+      savingsEl.textContent = formatCurrency(yearlySavings);
+    }
+
+    revInput.addEventListener('input', calculate);
+    comInput.addEventListener('input', calculate);
+    
+    // Initial fetch to ensure language mapping is correct after mounting
+    calculate();
+
+    // Observe html lang changes for currency symbol updates
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === "lang") {
+                calculate();
+            }
+        });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+  }
+
+  document.addEventListener('astro:page-load', initRoiCalculator);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    requestAnimationFrame(initRoiCalculator);
+  }
+</script>

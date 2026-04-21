@@ -33,8 +33,17 @@ export const translations: Record<Locale, TranslationMap> = {
     'hero.headline': 'Stop Giving 30% to Delivery Apps.',
     'hero.headline2': 'Build Your Digital Empire.',
     'hero.subheadline': 'We build independent delivery systems and high-converting websites. Drive massive traffic to your restaurant via Google & Facebook.',
-    'hero.cta': 'Get Free Audit',
+    'hero.cta': 'Calculate My Savings',
     'hero.cta2': 'View Our Work',
+
+    // ── ROI Calculator ──
+    'roi.title': 'ROI Calculator',
+    'roi.desc': 'See how much money you are leaving on the table with 3rd-party delivery apps.',
+    'roi.revenue_label': 'Monthly Delivery Revenue',
+    'roi.commission_label': 'Platform Commission Rate',
+    'roi.savings_label': 'What you save in a year using our system:',
+    'roi.savings_desc': '*Based on shifting your regular customers to a zero-commission direct ordering system.',
+    'roi.contact_btn': 'Build My System',
 
     // ── Services ──
     'services.badge': 'Services',
@@ -130,8 +139,17 @@ export const translations: Record<Locale, TranslationMap> = {
     'hero.headline': '停止向外卖平台缴纳30%佣金，',
     'hero.headline2': '打造您的数字帝国。',
     'hero.subheadline': '为您搭建品牌自有外卖系统与高转化网站。通过谷歌和Facebook精准引流，助您餐厅业绩倍增。',
-    'hero.cta': '获取免费诊断',
+    'hero.cta': '计算我的节约',
     'hero.cta2': '查看我们的案例',
+
+    // ── ROI Calculator (ZH) ──
+    'roi.title': '独家利润提取器 (ROI 计算器)',
+    'roi.desc': '测算您每年因为昂贵的外卖平台抽成而损失的净利润。',
+    'roi.revenue_label': '平均每月外卖营业额',
+    'roi.commission_label': '第三方外卖平台抽成比例',
+    'roi.savings_label': '如果您拥有自己的零抽成点餐系统，一年能省下：',
+    'roi.savings_desc': '*测算基于将高频熟客引导至自有系统省下的平台佣金',
+    'roi.contact_btn': '马上定制我的系统',
 
     // ── 服务 ──
     'services.badge': '核心服务',
