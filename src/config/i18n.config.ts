@@ -63,6 +63,12 @@ export const translations: Record<Locale, TranslationMap> = {
     'portfolio.badge': 'Portfolio',
     'portfolio.title': 'Our Work',
     'portfolio.subtitle': 'Sample sites built for our restaurant clients.',
+    'portfolio.sushi-master.title': 'Sushi Master Premium',
+    'portfolio.sushi-master.description': 'High-end Japanese dining site with reservation and multilingual menu showcase.',
+    'portfolio.pizza-burger.title': 'City Bistro Systems',
+    'portfolio.pizza-burger.description': 'Boutique bistro ordering system with POS integration for a smooth experience.',
+    'portfolio.oriental-kitchen.title': 'Sumi Ramen Lines',
+    'portfolio.oriental-kitchen.description': 'Authentic ramen shop combining a virtual queue and seamless ordering system.',
 
     // ── Testimonials ──
     'testimonials.badge': 'Testimonials',
@@ -136,6 +142,12 @@ export const translations: Record<Locale, TranslationMap> = {
     'portfolio.badge': '案例展示',
     'portfolio.title': '我们的作品',
     'portfolio.subtitle': '为餐饮客户打造的样板网站。',
+    'portfolio.sushi-master.title': 'Sushi Master 高级日料',
+    'portfolio.sushi-master.description': '高端日料餐饮品牌官网，突出匠人精神，搭配高级预约系统与多语言菜单展示。',
+    'portfolio.pizza-burger.title': 'City Bistro 城市小酒馆',
+    'portfolio.pizza-burger.description': '连锁精品小酒馆点餐系统，打通POS机与后厨，提供极其顺畅的二次下单体验。',
+    'portfolio.oriental-kitchen.title': 'Sumi Ramen 拉面排队系统',
+    'portfolio.oriental-kitchen.description': '地道日式拉面馆，结合排队领号与无缝点餐系统，通过本地化社区营销获客。',
 
     // ── 客户评价 ──
     'testimonials.badge': '客户评价',

@@ -150,11 +150,11 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           >
             <div class="flex flex-1 flex-col">
               {project.data.image ? (
-                <div class="mb-4 aspect-video overflow-hidden rounded-lg">
+                <div class="mb-4 h-56 lg:h-48 w-full overflow-hidden rounded-lg">
                   <Image src={project.data.image} alt={project.data.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                 </div>
               ) : (
-                <div class="mb-4 aspect-video overflow-hidden rounded-lg bg-background-tertiary flex items-center justify-center">
+                <div class="mb-4 h-56 lg:h-48 w-full overflow-hidden rounded-lg bg-background-tertiary flex items-center justify-center">
                   <Icon name="layers" class="w-12 h-12 text-brand-500/40" />
                 </div>
               )}
@@ -162,10 +162,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
                 {project.data.icon && (
                   <Icon name={project.data.icon} class="w-5 h-5 text-brand-500 shrink-0" />
                 )}
-                <h3 class="font-display text-lg font-bold text-foreground truncate">{project.data.title}</h3>
+                <h3 class="font-display text-lg font-bold text-foreground truncate" data-i18n={`portfolio.${project.id.replace(/\\.mdx?$/, '')}.title`}>{t(`portfolio.${project.id.replace(/\\.mdx?$/, '')}.title`) || project.data.title}</h3>
                 <Icon name="arrow-up-right" size="sm" class="ml-auto text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
               </div>
-              <p class="text-sm text-foreground-muted leading-relaxed line-clamp-2 flex-1">{project.data.description}</p>
+              <p class="text-sm text-foreground-muted leading-relaxed line-clamp-3 md:line-clamp-2 mt-1 flex-1" data-i18n={`portfolio.${project.id.replace(/\\.mdx?$/, '')}.description`}>{t(`portfolio.${project.id.replace(/\\.mdx?$/, '')}.description`) || project.data.description}</p>
             </div>
           </Card>
         ))}
