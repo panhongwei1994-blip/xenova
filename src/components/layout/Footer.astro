@@ -225,7 +225,7 @@ function getSocialIcon(platform: string): string {
                   {socialLinks.map((social) => (
                     <a
                       href={social.href}
-                      class="transition-colors text-foreground-muted hover:text-foreground"
+                      class="transition-colors text-foreground-muted hover:text-foreground min-w-[44px] min-h-[44px] flex items-center justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label || `Follow us on ${social.platform}`}
@@ -252,7 +252,7 @@ function getSocialIcon(platform: string): string {
                     <li>
                       <a
                         href={link.href}
-                        class="text-sm transition-colors text-foreground-muted hover:text-foreground"
+                        class="text-sm transition-colors text-foreground-muted hover:text-foreground block py-2 md:inline-block md:py-1"
                         target={link.external || link.href.startsWith('http') ? '_blank' : undefined}
                         rel={link.external || link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       >
