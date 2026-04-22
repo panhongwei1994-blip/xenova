@@ -60,6 +60,15 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
         <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
+
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-center text-sm text-foreground-muted" data-reveal data-reveal-delay="1">
+      {['hero.trust.1', 'hero.trust.2', 'hero.trust.3'].map((key) => (
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 shadow-sm">
+          <Icon name="badge-check" size="xs" class="text-brand-500" />
+          <span data-i18n={key}>{t(key)}</span>
+        </span>
+      ))}
+    </div>
   </Hero>
 
   <!-- ROI Calculator -->
