@@ -42,9 +42,11 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     showScrollIndicator
     descriptionClass="max-w-2xl"
   >
-    <Badge slot="badge" variant="brand" pill pulse class="mx-auto self-center text-center dark:text-brand-100">
-      <span data-i18n="hero.badge">{t('hero.badge')}</span>
-    </Badge>
+    <div slot="badge" class="flex w-full justify-center">
+      <div class="inline-flex items-center rounded-full border border-brand-500/20 bg-background/85 px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur-md dark:border-white/14 dark:bg-white/8 dark:text-white/92">
+        <span data-i18n="hero.badge">{t('hero.badge')}</span>
+      </div>
+    </div>
 
     <h1 slot="title" class="mx-auto max-w-4xl text-center text-balance">
       <span class="block text-[1.78rem] font-semibold leading-[1.18] tracking-[-0.045em] text-foreground [-webkit-text-fill-color:currentColor] sm:text-[2rem] md:text-4xl lg:text-5xl" data-i18n="hero.headline">{t('hero.headline')}</span>
@@ -56,7 +58,11 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     </p>
 
     <div slot="aside" id="roi-calculator" class="w-full -mt-4 md:mt-0" data-reveal data-reveal-delay="1">
-      <Card variant="elevated" padding="lg" class="relative overflow-hidden border border-brand-500/30 bg-background-secondary/85 shadow-[0_24px_80px_-48px_color-mix(in_oklch,var(--color-brand-500)_60%,transparent)] backdrop-blur-md dark:border-white/12 dark:bg-transparent dark:shadow-none dark:backdrop-blur-0">
+      <Card variant="elevated" padding="lg" class="relative overflow-hidden border border-brand-500/30 bg-background-secondary/85 shadow-[0_24px_80px_-48px_color-mix(in_oklch,var(--color-brand-500)_60%,transparent)] backdrop-blur-md dark:border-white/14 dark:bg-white/[0.055] dark:shadow-[0_24px_80px_-48px_rgba(255,255,255,0.18)] dark:backdrop-blur-xl">
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.12] via-white/[0.06] to-transparent dark:from-white/[0.14] dark:via-white/[0.08] dark:to-transparent"
+          aria-hidden="true"
+        />
         <div
           class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/70 to-transparent"
           aria-hidden="true"
