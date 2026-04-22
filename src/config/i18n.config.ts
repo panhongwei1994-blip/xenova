@@ -81,9 +81,13 @@ export const translations: Record<Locale, TranslationMap> = {
     // ── ROI Calculator ──
     'roi.title': 'ROI Calculator',
     'roi.desc': 'See how much money you are leaving on the table with 3rd-party delivery apps.',
+    'roi.section.title.lead': 'See Your',
+    'roi.section.title.highlight': 'Payback Window',
+    'roi.section.subtitle': 'A cleaner estimate of what third-party commissions are costing you, presented in the same straightforward style as the rest of the site.',
     'roi.revenue_label': 'Monthly Delivery Revenue',
     'roi.commission_label': 'Platform Commission Rate',
     'roi.savings_label': 'What you save in a year using our system:',
+    'roi.payback_line': '$998 · break even in as fast as 11 days',
     'roi.savings_desc': '*Based on shifting your regular customers to a zero-commission direct ordering system.',
     'roi.contact_btn': 'Build My System',
 
@@ -287,9 +291,13 @@ export const translations: Record<Locale, TranslationMap> = {
     // ── ROI Calculator (ZH) ──
     'roi.title': '外卖平台算账器',
     'roi.desc': '测算您每年因为昂贵的外卖平台抽成而损失的净利润。',
+    'roi.section.title.lead': '算清您的',
+    'roi.section.title.highlight': '回本周期',
+    'roi.section.subtitle': '用和 Services、Pricing 一样的页面节奏，直接看清第三方平台抽成到底让您每年少赚多少钱。',
     'roi.revenue_label': '平均每月外卖营业额',
     'roi.commission_label': '第三方外卖平台抽成比例',
     'roi.savings_label': '如果您拥有自己的零抽成点餐系统，一年能省下：',
+    'roi.payback_line': '$998 · 最快11天回本',
     'roi.savings_desc': '*测算基于将高频熟客引导至自有系统省下的平台佣金',
     'roi.contact_btn': '马上定制我的系统',
 

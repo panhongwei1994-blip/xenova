@@ -9,7 +9,6 @@ import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
 import { t } from '@/config/i18n.config';
 import { Image } from 'astro:assets';
-import Dialog from '@/components/ui/overlay/Dialog/Dialog.astro';
 import RoiCalculator from '@/components/landing/RoiCalculator.astro';
 import PricingCards from '@/components/landing/PricingCards.astro';
 
@@ -51,7 +50,7 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" type="button" onclick="window.openDialog?.('roi-calculator-dialog')">
+      <Button size="lg" href="#roi-calculator">
         <span data-i18n="hero.cta">{t('hero.cta')}</span>
         <Icon name="calculator" size="sm" />
       </Button>
@@ -62,6 +61,37 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
       </Button>
     </Fragment>
   </Hero>
+
+  <!-- ROI Calculator -->
+  <section
+    id="roi-calculator"
+    class="relative z-10 scroll-mt-24 border-t border-border bg-background-secondary py-[var(--space-section-md)] md:scroll-mt-28"
+  >
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill><span data-i18n="roi.title">{t('roi.title')}</span></Badge>
+          <h2 class="font-display text-3xl font-bold text-foreground md:text-4xl">
+            <span data-i18n="roi.section.title.lead">{t('roi.section.title.lead')}</span>{' '}
+            <span class="text-brand-500" data-i18n="roi.section.title.highlight">{t('roi.section.title.highlight')}</span>
+          </h2>
+        </div>
+        <p class="max-w-3xl text-lg text-foreground-muted text-pretty" data-i18n="roi.section.subtitle">
+          {t('roi.section.subtitle')}
+        </p>
+      </div>
+
+      <Card
+        variant="elevated"
+        padding="lg"
+        class="mx-auto w-full max-w-4xl border border-border/80 bg-background"
+        data-reveal
+        data-reveal-delay="1"
+      >
+        <RoiCalculator />
+      </Card>
+    </div>
+  </section>
 
   <!-- Services Section -->
   <section id="services" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
@@ -375,7 +405,7 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
         {t('cta.subtitle')}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" type="button" onclick="window.openDialog?.('roi-calculator-dialog')">
+        <Button size="lg" href="#roi-calculator">
           <span data-i18n="hero.cta">{t('hero.cta')}</span>
           <Icon name="calculator" size="sm" />
         </Button>
@@ -417,12 +447,4 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
 
   document.addEventListener('astro:page-load', initCountup);
 </script>
-  <!-- ROI Dialog -->
-  <Dialog id="roi-calculator-dialog" size="md" class="max-w-xl">
-    <div class="mb-6">
-      <h2 class="text-2xl md:text-3xl font-bold font-display text-foreground pr-8" data-i18n="roi.title">{t('roi.title')}</h2>
-      <p class="mt-2 text-sm md:text-base text-foreground-muted" data-i18n="roi.desc">{t('roi.desc')}</p>
-    </div>
-    <RoiCalculator />
-  </Dialog>
 </LandingLayout>
