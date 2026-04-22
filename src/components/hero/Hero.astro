@@ -18,6 +18,8 @@ interface Props extends HTMLAttributes<'section'> {
   showScrollIndicator?: boolean;
   /** Max-width class for the description wrapper (default: max-w-xl) */
   descriptionClass?: string;
+  /** Optional override for content column alignment */
+  contentClass?: string;
 }
 
 const {
@@ -28,6 +30,7 @@ const {
   bottomFade = false,
   showScrollIndicator = false,
   descriptionClass = 'max-w-xl',
+  contentClass,
   class: className,
   ...attrs
 } = Astro.props;
@@ -47,7 +50,8 @@ const sectionClasses = cn(heroSectionVariants({ size }), className);
 
 const contentClasses = cn(
   'z-10 flex flex-col',
-  alignment
+  alignment,
+  contentClass
 );
 
 const gridClasses = cn(

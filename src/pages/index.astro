@@ -41,12 +41,11 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     class="hero-dark-gradient !pt-28 md:!pt-[calc(var(--space-page-top)_+_var(--space-16))]"
     showScrollIndicator
     descriptionClass="max-w-2xl"
+    contentClass="items-center text-center"
   >
-    <div slot="badge" class="flex w-full justify-center">
-      <div class="inline-flex items-center rounded-full border border-brand-500/20 bg-background/85 px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur-md dark:border-white/14 dark:bg-white/8 dark:text-white/92">
-        <span data-i18n="hero.badge">{t('hero.badge')}</span>
-      </div>
-    </div>
+    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-100">
+      <span data-i18n="hero.badge">{t('hero.badge')}</span>
+    </Badge>
 
     <h1 slot="title" class="mx-auto max-w-4xl text-center text-balance">
       <span class="block text-[1.78rem] font-semibold leading-[1.18] tracking-[-0.045em] text-foreground [-webkit-text-fill-color:currentColor] sm:text-[2rem] md:text-4xl lg:text-5xl" data-i18n="hero.headline">{t('hero.headline')}</span>
