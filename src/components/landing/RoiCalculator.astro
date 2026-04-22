@@ -36,7 +36,7 @@ import { t } from '@/config/i18n.config';
   </div>
   
   <div class="mt-2 flex flex-col items-center">
-    <a href="/contact" class="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-md font-bold ring-offset-background transition-all hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-brand-500 text-brand-foreground hover:bg-brand-600 shadow-lg shadow-brand-500/20 h-14 px-10 w-full">
+    <a href="/contact" class="inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-xl bg-brand-500 px-10 text-md font-bold text-brand-foreground shadow-lg shadow-brand-500/20 ring-offset-background transition-all hover:scale-105 hover:bg-brand-600 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
       <span data-i18n="roi.contact_btn">{t('roi.contact_btn')}</span>
     </a>
   </div>
@@ -53,8 +53,13 @@ import { t } from '@/config/i18n.config';
     if (!revInput || !comInput || !revVal || !comVal || !savingsEl) return;
 
     function formatCurrency(num: number) {
+      const locale = document.documentElement.lang?.startsWith('zh') ? 'zh-CN' : 'en-US';
       if (typeof Intl !== 'undefined') {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+        return new Intl.NumberFormat(locale, {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0,
+        }).format(num);
       }
       return '$' + num.toLocaleString();
     }

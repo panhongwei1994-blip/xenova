@@ -80,6 +80,7 @@ export const POST: APIRoute = async ({ request }) => {
       html: `
         <p><strong>Name:</strong> ${result.data.name}</p>
         <p><strong>Email:</strong> ${result.data.email}</p>
+        ${result.data.subject ? `<p><strong>Intent:</strong> ${result.data.subject}</p>` : ''}
         <p><strong>Message:</strong></p>
         <p>${result.data.message.replace(/\n/g, '<br>')}</p>
       `,

@@ -9,7 +9,6 @@ import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
 import { t } from '@/config/i18n.config';
 import { Image } from 'astro:assets';
-import Dialog from '@/components/ui/overlay/Dialog/Dialog.astro';
 import RoiCalculator from '@/components/landing/RoiCalculator.astro';
 import PricingCards from '@/components/landing/PricingCards.astro';
 
@@ -41,9 +40,9 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
       <span data-i18n="hero.badge">{t('hero.badge')}</span>
     </Badge>
 
-    <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]" data-i18n="hero.headline">{t('hero.headline')}</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] dark:text-foreground dark:[-webkit-text-fill-color:currentColor]" data-i18n="hero.headline2">{t('hero.headline2')}</span>
+    <h1 slot="title" class="max-w-5xl">
+      <span class="block text-3xl font-semibold tracking-tight text-foreground [-webkit-text-fill-color:currentColor] md:text-4xl lg:text-5xl" data-i18n="hero.headline">{t('hero.headline')}</span>
+      <span class="mt-3 block text-4xl font-bold tracking-tight text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] md:text-5xl lg:text-6xl dark:text-foreground dark:[-webkit-text-fill-color:currentColor]" data-i18n="hero.headline2">{t('hero.headline2')}</span>
     </h1>
 
     <p slot="description" data-i18n="hero.subheadline">
@@ -51,7 +50,7 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" type="button" onclick="window.openDialog?.('roi-calculator-dialog')">
+      <Button size="lg" href="#roi-calculator">
         <span data-i18n="hero.cta">{t('hero.cta')}</span>
         <Icon name="calculator" size="sm" />
       </Button>
@@ -62,6 +61,30 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
       </Button>
     </Fragment>
   </Hero>
+
+  <!-- ROI Calculator -->
+  <section id="roi-calculator" class="relative z-10 border-t border-border bg-background py-[var(--space-section-md)] scroll-mt-24 md:scroll-mt-28">
+    <div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+      <div class="flex flex-col gap-5" data-reveal>
+        <Badge variant="brand" pill class="self-start">
+          <span data-i18n="roi.title">{t('roi.title')}</span>
+        </Badge>
+        <div class="space-y-4">
+          <h2 class="max-w-3xl font-display text-3xl font-bold leading-tight text-foreground md:text-4xl">
+            <span data-i18n="hero.headline">{t('hero.headline')}</span><br />
+            <span class="text-brand-500" data-i18n="hero.headline2">{t('hero.headline2')}</span>
+          </h2>
+          <p class="max-w-2xl text-base leading-relaxed text-foreground-muted md:text-lg" data-i18n="roi.desc">
+            {t('roi.desc')}
+          </p>
+        </div>
+      </div>
+
+      <Card variant="elevated" padding="lg" class="border-brand-500/15 bg-background shadow-xl shadow-brand-500/5" data-reveal data-reveal-delay="1">
+        <RoiCalculator />
+      </Card>
+    </div>
+  </section>
 
   <!-- Services Section -->
   <section id="services" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
@@ -375,7 +398,7 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
         {t('cta.subtitle')}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" type="button" onclick="window.openDialog?.('roi-calculator-dialog')">
+        <Button size="lg" href="#roi-calculator">
           <span data-i18n="hero.cta">{t('hero.cta')}</span>
           <Icon name="calculator" size="sm" />
         </Button>
@@ -417,12 +440,4 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
 
   document.addEventListener('astro:page-load', initCountup);
 </script>
-  <!-- ROI Dialog -->
-  <Dialog id="roi-calculator-dialog" size="md" class="max-w-xl">
-    <div class="mb-6">
-      <h2 class="text-2xl md:text-3xl font-bold font-display text-foreground pr-8" data-i18n="roi.title">{t('roi.title')}</h2>
-      <p class="mt-2 text-sm md:text-base text-foreground-muted" data-i18n="roi.desc">{t('roi.desc')}</p>
-    </div>
-    <RoiCalculator />
-  </Dialog>
 </LandingLayout>

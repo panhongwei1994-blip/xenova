@@ -17,6 +17,20 @@ const {
   successMessage = t('contact.form.success'),
   class: className,
 } = Astro.props;
+const intentOptions = [
+  {
+    id: 'showcase-site-498',
+    key: 'contact.form.intent.option.showcase',
+  },
+  {
+    id: 'delivery-site-998',
+    key: 'contact.form.intent.option.delivery',
+  },
+  {
+    id: 'other',
+    key: 'contact.form.intent.option.other',
+  },
+];
 ---
 
 <form
@@ -46,12 +60,43 @@ const {
     />
   </div>
 
-  <Input
-    label={t('contact.form.subject')}
-    labelKey="contact.form.subject"
-    name="subject"
-    type="text"
-  />
+  <div class="space-y-1.5">
+    <label for="contact-intent" class="text-sm font-medium leading-none">
+      <span data-i18n="contact.form.intent">{t('contact.form.intent')}</span>
+    </label>
+    <div class="relative">
+      <select
+        id="contact-intent"
+        name="subject"
+        class="flex h-11 w-full appearance-none rounded-xl border border-border bg-background px-4 py-2 pr-10 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        required
+      >
+        <option value="" disabled selected data-i18n="contact.form.intent.placeholder">
+          {t('contact.form.intent.placeholder')}
+        </option>
+        {intentOptions.map((option) => (
+          <option value={t(option.key)} data-i18n={option.key} data-intent-id={option.id}>
+            {t(option.key)}
+          </option>
+        ))}
+      </select>
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+        <svg
+          class="h-4 w-4 text-muted-foreground"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
 
   <Textarea
     label={t('contact.form.message')}
@@ -83,6 +128,7 @@ const {
     const form = document.getElementById('contact-form') as HTMLFormElement;
     const button = document.getElementById('submit-button') as HTMLButtonElement;
     const message = document.getElementById('form-message') as HTMLDivElement;
+    const intentSelect = document.getElementById('contact-intent') as HTMLSelectElement | null;
 
     if (!form || !button || !message) return;
 
@@ -102,7 +148,21 @@ const {
       if (label) label.textContent = getText(key);
     };
 
+    const syncIntentOptions = () => {
+      if (!intentSelect) return;
+
+      intentSelect.querySelectorAll<HTMLOptionElement>('option[data-i18n]').forEach((option) => {
+        const key = option.dataset.i18n;
+        if (!key || option.value === '') return;
+        option.value = getText(key);
+      });
+    };
+
     const successMessage = form.dataset.successMessage || getText('contact.form.success');
+    syncIntentOptions();
+
+    if (form.dataset.contactInit === 'true') return;
+    form.dataset.contactInit = 'true';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -144,4 +204,6 @@ const {
 
   initContactForm();
   document.addEventListener('astro:after-swap', initContactForm);
+  document.addEventListener('astro:page-load', initContactForm);
+  document.addEventListener('site:lang-change', initContactForm);
 </script>

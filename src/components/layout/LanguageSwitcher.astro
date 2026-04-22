@@ -107,6 +107,7 @@ const { class: className } = Astro.props;
 
     // Set html lang attribute
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.dispatchEvent(new CustomEvent('site:lang-change', { detail: { lang } }));
   }
 
   function initLanguageSwitcher() {
