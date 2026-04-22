@@ -3,12 +3,12 @@ import { t } from '@/config/i18n.config';
 ---
 <div class="roi-calculator flex flex-col gap-6">
   <div>
-    <label class="block text-sm font-medium text-foreground mb-4 font-display">
-      <span data-i18n="roi.revenue_label">{t('roi.revenue_label')}</span>: <span id="roi-revenue-val" class="font-bold text-brand-500 bg-brand-500/10 px-2 py-1 rounded-md">$10,000</span>
+    <label class="mb-4 block text-sm font-medium text-foreground font-display dark:text-white/90">
+      <span data-i18n="roi.revenue_label">{t('roi.revenue_label')}</span>: <span id="roi-revenue-val" class="rounded-md bg-brand-500/10 px-2 py-1 font-bold text-brand-500 dark:bg-brand-500/20 dark:text-brand-200">$10,000</span>
     </label>
     <div class="px-2">
-      <input type="range" id="roi-revenue" min="5000" max="100000" step="1000" value="10000" class="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-brand-500" />
-      <div class="flex justify-between text-xs text-foreground-muted mt-2">
+      <input type="range" id="roi-revenue" min="5000" max="100000" step="1000" value="10000" class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-border accent-brand-500 dark:bg-white/18 dark:accent-brand-300" />
+      <div class="mt-2 flex justify-between text-xs text-foreground-muted dark:text-white/60">
         <span>$5k</span>
         <span>$100k+</span>
       </div>
@@ -16,30 +16,30 @@ import { t } from '@/config/i18n.config';
   </div>
 
   <div>
-    <label class="block text-sm font-medium text-foreground mb-4 font-display">
-      <span data-i18n="roi.commission_label">{t('roi.commission_label')}</span>: <span id="roi-commission-val" class="font-bold text-brand-500 bg-brand-500/10 px-2 py-1 rounded-md">30%</span>
+    <label class="mb-4 block text-sm font-medium text-foreground font-display dark:text-white/90">
+      <span data-i18n="roi.commission_label">{t('roi.commission_label')}</span>: <span id="roi-commission-val" class="rounded-md bg-brand-500/10 px-2 py-1 font-bold text-brand-500 dark:bg-brand-500/20 dark:text-brand-200">30%</span>
     </label>
     <div class="px-2">
-      <input type="range" id="roi-commission" min="15" max="40" step="1" value="30" class="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-brand-500" />
-      <div class="flex justify-between text-xs text-foreground-muted mt-2">
+      <input type="range" id="roi-commission" min="15" max="40" step="1" value="30" class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-border accent-brand-500 dark:bg-white/18 dark:accent-brand-300" />
+      <div class="mt-2 flex justify-between text-xs text-foreground-muted dark:text-white/60">
         <span>15%</span>
         <span>40%</span>
       </div>
     </div>
   </div>
 
-  <div class="mt-4 p-8 rounded-2xl bg-gradient-to-br from-brand-500/10 to-brand-500/5 border border-brand-500/20 text-center shadow-inner relative overflow-hidden">
+  <div class="relative mt-4 overflow-hidden rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-brand-500/5 p-8 text-center shadow-inner dark:border-white/10 dark:bg-white/[0.04] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
     <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
-    <p class="text-sm font-medium text-foreground-muted mb-2 relative z-10" data-i18n="roi.savings_label">{t('roi.savings_label')}</p>
-    <p class="font-display text-5xl md:text-6xl font-bold tracking-tight text-brand-500 my-4 drop-shadow-sm relative z-10" id="roi-savings">$36,000</p>
-    <p class="relative z-10 text-sm font-semibold text-foreground" data-i18n="roi.payback_line">{t('roi.payback_line')}</p>
-    <p class="text-xs text-foreground-muted/80 max-w-xs mx-auto mt-2 relative z-10" data-i18n="roi.savings_desc">{t('roi.savings_desc')}</p>
+    <p class="relative z-10 mb-2 text-sm font-medium text-foreground-muted dark:text-white/70" data-i18n="roi.savings_label">{t('roi.savings_label')}</p>
+    <p class="relative z-10 my-4 font-display text-5xl font-bold tracking-tight text-brand-500 drop-shadow-sm md:text-6xl dark:text-brand-200" id="roi-savings">$36,000</p>
+    <p class="relative z-10 mx-auto mt-2 max-w-xs text-xs text-foreground-muted/80 dark:text-white/58" data-i18n="roi.savings_desc">{t('roi.savings_desc')}</p>
   </div>
   
   <div class="mt-2 flex flex-col items-center">
     <a href="/contact" class="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-md font-bold ring-offset-background transition-all hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-brand-500 text-brand-foreground hover:bg-brand-600 shadow-lg shadow-brand-500/20 h-14 px-10 w-full">
       <span data-i18n="roi.contact_btn">{t('roi.contact_btn')}</span>
     </a>
+    <p class="mt-3 text-sm font-semibold text-foreground dark:text-white/82" data-i18n="roi.payback_line">{t('roi.payback_line')}</p>
   </div>
 </div>
 
@@ -54,10 +54,7 @@ import { t } from '@/config/i18n.config';
     if (!revInput || !comInput || !revVal || !comVal || !savingsEl) return;
 
     function formatCurrency(num: number) {
-      if (typeof Intl !== 'undefined') {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
-      }
-      return '$' + num.toLocaleString();
+      return '$' + num.toLocaleString('en-US');
     }
 
     function calculate() {
