@@ -6,6 +6,7 @@ import { textareaVariants } from './textarea.variants';
 
 interface Props extends HTMLAttributes<'textarea'> {
   label?: string;
+  labelKey?: string;
   error?: string;
   hint?: string;
   size?: 'sm' | 'md' | 'lg';
@@ -14,6 +15,7 @@ interface Props extends HTMLAttributes<'textarea'> {
 
 const {
   label,
+  labelKey,
   error,
   hint,
   size = 'md',
@@ -35,7 +37,7 @@ const textareaStyles = cn(
   {
     label && (
       <label for={textareaId} class="text-sm font-medium leading-none">
-        {label}
+        <span data-i18n={labelKey}>{label}</span>
       </label>
     )
   }

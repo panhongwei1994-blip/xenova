@@ -6,6 +6,7 @@ import { inputVariants, inputSizeConfig } from './input.variants';
 
 interface Props extends HTMLAttributes<'input'> {
   label?: string;
+  labelKey?: string;
   error?: string;
   hint?: string;
   size?: 'sm' | 'md' | 'lg';
@@ -15,7 +16,7 @@ interface Props extends HTMLAttributes<'input'> {
   trailingIcon?: string;
 }
 
-const { label, error, hint, size = 'md', leadingIcon, trailingIcon, class: className, id, ...attrs } = Astro.props;
+const { label, labelKey, error, hint, size = 'md', leadingIcon, trailingIcon, class: className, id, ...attrs } = Astro.props;
 
 const inputId = id || generateId('input');
 const config = inputSizeConfig[size];
@@ -41,7 +42,7 @@ import Icon from '../../primitives/Icon/Icon.astro';
   {
     label && (
       <label for={inputId} class="text-sm font-medium leading-none">
-        {label}
+        <span data-i18n={labelKey}>{label}</span>
       </label>
     )
   }
