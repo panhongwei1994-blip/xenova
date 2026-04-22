@@ -80,6 +80,38 @@ const channels = [
             </p>
           </div>
 
+          <Card padding="sm" class="border-brand-500/20 bg-brand-500/5">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+                  <Icon name="message-circle" size="sm" />
+                </div>
+                <div>
+                  <p class="font-semibold text-sm text-foreground" data-i18n="contact.channel.wechat">
+                    {t('contact.channel.wechat')}
+                  </p>
+                  <p class="text-xs text-foreground-muted" data-i18n="contact.channel.wechat.desc">
+                    {t('contact.channel.wechat.desc')}
+                  </p>
+                </div>
+              </div>
+
+              <img
+                src="/contact/wechat-qr.jpeg"
+                alt="WeChat QR code"
+                class="w-full rounded-2xl border border-border bg-background"
+                loading="lazy"
+              />
+
+              <div class="rounded-xl border border-border bg-background px-4 py-3 text-center">
+                <p class="text-xs uppercase tracking-[0.14em] text-foreground-muted" data-i18n="contact.channel.wechat.id_label">
+                  {t('contact.channel.wechat.id_label')}
+                </p>
+                <p class="mt-1 font-semibold text-foreground" translate="no">hisoracc</p>
+              </div>
+            </div>
+          </Card>
+
           <!-- Channel list -->
           <div class="space-y-2">
             {channels.map((ch) => (

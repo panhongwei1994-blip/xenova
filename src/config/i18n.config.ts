@@ -187,6 +187,9 @@ export const translations: Record<Locale, TranslationMap> = {
     'contact.channels.title': 'Other channels',
     'contact.channels.subtitle': 'Prefer a direct channel? Pick whichever works best.',
     'contact.channel.email': 'Email',
+    'contact.channel.wechat': 'WeChat',
+    'contact.channel.wechat.desc': 'Scan the QR code below to add us directly on WeChat.',
+    'contact.channel.wechat.id_label': 'WeChat ID',
     'contact.location.basedIn': 'Based in',
 
     // ── Portfolio ──
@@ -396,6 +399,9 @@ export const translations: Record<Locale, TranslationMap> = {
     'contact.channels.title': '其他联系方式',
     'contact.channels.subtitle': '如果您更喜欢直接联系，可以选择最方便的方式。',
     'contact.channel.email': '邮箱',
+    'contact.channel.wechat': '微信咨询',
+    'contact.channel.wechat.desc': '扫描下方二维码，直接添加我们微信。',
+    'contact.channel.wechat.id_label': '微信号',
     'contact.location.basedIn': '位于',
 
     // ── 案例展示 ──
