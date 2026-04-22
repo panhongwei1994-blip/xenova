@@ -65,6 +65,7 @@ const siteConfig: SiteConfig = {
   ogImage: '/og-default.svg',
   author: 'Hi Sora',
   email: 'hello@hisora.cc',
+  phone: '',
   address: {
     street: '',
     city: 'Zurich',
