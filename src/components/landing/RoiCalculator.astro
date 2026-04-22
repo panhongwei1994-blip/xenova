@@ -55,11 +55,9 @@ import { t } from '@/config/i18n.config';
       const formatCurrency = (num: number) => {
         const locale = document.documentElement.lang?.startsWith('zh') ? 'zh-CN' : 'en-US';
         if (typeof Intl !== 'undefined') {
-          return new Intl.NumberFormat(locale, {
-            style: 'currency',
-            currency: 'USD',
+          return `$${new Intl.NumberFormat(locale, {
             maximumFractionDigits: 0,
-          }).format(num);
+          }).format(num)}`;
         }
         return '$' + num.toLocaleString();
       };

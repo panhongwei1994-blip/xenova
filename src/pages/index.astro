@@ -42,31 +42,30 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     showScrollIndicator
     descriptionClass="max-w-2xl"
   >
-    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200 self-start">
+    <Badge slot="badge" variant="brand" pill pulse class="self-center dark:text-brand-200">
       <span data-i18n="hero.badge">{t('hero.badge')}</span>
     </Badge>
 
-    <h1 slot="title" class="max-w-4xl">
-      <span class="block text-3xl font-semibold tracking-tight text-foreground [-webkit-text-fill-color:currentColor] md:text-4xl lg:text-5xl" data-i18n="hero.headline">{t('hero.headline')}</span>
-      <span class="mt-3 block text-4xl font-bold tracking-tight text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] md:text-5xl lg:text-6xl dark:text-foreground dark:[-webkit-text-fill-color:currentColor]" data-i18n="hero.headline2">{t('hero.headline2')}</span>
+    <h1 slot="title" class="mx-auto max-w-4xl text-center">
+      <span class="inline text-[1.9rem] font-semibold leading-tight tracking-tight text-foreground [-webkit-text-fill-color:currentColor] sm:text-[2.1rem] md:block md:text-4xl lg:text-5xl" data-i18n="hero.headline">{t('hero.headline')}</span>
+      <span class="ml-1 inline text-[2.05rem] font-bold leading-tight tracking-tight text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] sm:text-[2.25rem] md:ml-0 md:mt-3 md:block md:text-5xl lg:text-6xl dark:text-foreground dark:[-webkit-text-fill-color:currentColor]" data-i18n="hero.headline2">{t('hero.headline2')}</span>
     </h1>
 
-    <p slot="description" data-i18n="roi.desc">
+    <p slot="description" class="mx-auto text-center" data-i18n="roi.desc">
       {t('roi.desc')}
     </p>
 
-    <Fragment slot="actions">
-      <Button size="lg" variant="outline" href="#work">
-        <Icon name="layers" size="sm" />
-        <span data-i18n="hero.cta2">{t('hero.cta2')}</span>
-        <Icon name="arrow-right" size="sm" />
-      </Button>
-    </Fragment>
-
     <div slot="aside" id="roi-calculator" class="w-full" data-reveal data-reveal-delay="1">
-      <Card variant="elevated" padding="lg" class="border-brand-500/15 bg-background/95 shadow-xl shadow-brand-500/5 backdrop-blur-sm">
+      <Card variant="elevated" padding="lg" class="border-brand-500/10 bg-gradient-to-br from-brand-500/8 via-background/55 to-background-secondary/65 shadow-xl shadow-brand-500/5 backdrop-blur-md dark:from-brand-500/10 dark:via-white/[0.03] dark:to-white/[0.02] dark:shadow-brand-500/10">
         <RoiCalculator />
       </Card>
+      <div class="mt-5 flex justify-center lg:justify-start">
+        <Button size="lg" variant="outline" href="#work">
+          <Icon name="layers" size="sm" />
+          <span data-i18n="hero.cta2">{t('hero.cta2')}</span>
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
     </div>
   </Hero>
 
