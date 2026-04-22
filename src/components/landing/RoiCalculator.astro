@@ -53,13 +53,7 @@ import { t } from '@/config/i18n.config';
       if (!revInput || !comInput || !revVal || !comVal || !savingsEl) return;
 
       const formatCurrency = (num: number) => {
-        const locale = document.documentElement.lang?.startsWith('zh') ? 'zh-CN' : 'en-US';
-        if (typeof Intl !== 'undefined') {
-          return `$${new Intl.NumberFormat(locale, {
-            maximumFractionDigits: 0,
-          }).format(num)}`;
-        }
-        return '$' + num.toLocaleString();
+        return `$${num.toLocaleString('en-US')}`;
       };
 
       const calculate = () => {

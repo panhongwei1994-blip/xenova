@@ -46,9 +46,9 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
       <span data-i18n="hero.badge">{t('hero.badge')}</span>
     </Badge>
 
-    <h1 slot="title" class="mx-auto max-w-4xl text-center">
-      <span class="inline text-[1.9rem] font-semibold leading-tight tracking-tight text-foreground [-webkit-text-fill-color:currentColor] sm:text-[2.1rem] md:block md:text-4xl lg:text-5xl" data-i18n="hero.headline">{t('hero.headline')}</span>
-      <span class="ml-1 inline text-[2.05rem] font-bold leading-tight tracking-tight text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] sm:text-[2.25rem] md:ml-0 md:mt-3 md:block md:text-5xl lg:text-6xl dark:text-foreground dark:[-webkit-text-fill-color:currentColor]" data-i18n="hero.headline2">{t('hero.headline2')}</span>
+    <h1 slot="title" class="mx-auto max-w-4xl text-center text-balance">
+      <span class="block text-[1.78rem] font-semibold leading-[1.18] tracking-[-0.045em] text-foreground [-webkit-text-fill-color:currentColor] sm:text-[2rem] md:text-4xl lg:text-5xl" data-i18n="hero.headline">{t('hero.headline')}</span>
+      <span class="mt-2 block text-[1.92rem] font-bold leading-[1.18] tracking-[-0.05em] text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] sm:text-[2.15rem] md:mt-3 md:text-5xl lg:text-6xl dark:text-foreground dark:[-webkit-text-fill-color:currentColor]" data-i18n="hero.headline2">{t('hero.headline2')}</span>
     </h1>
 
     <p slot="description" class="mx-auto text-center" data-i18n="roi.desc">
@@ -56,11 +56,15 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     </p>
 
     <div slot="aside" id="roi-calculator" class="w-full" data-reveal data-reveal-delay="1">
-      <Card variant="elevated" padding="lg" class="border-brand-500/10 bg-gradient-to-br from-brand-500/8 via-background/55 to-background-secondary/65 shadow-xl shadow-brand-500/5 backdrop-blur-md dark:from-brand-500/10 dark:via-white/[0.03] dark:to-white/[0.02] dark:shadow-brand-500/10">
+      <Card variant="elevated" padding="lg" class="relative overflow-hidden border border-brand-500/30 bg-background-secondary/85 shadow-[0_24px_80px_-48px_color-mix(in_oklch,var(--color-brand-500)_60%,transparent)] backdrop-blur-md dark:bg-background-secondary/75">
+        <div
+          class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/70 to-transparent"
+          aria-hidden="true"
+        />
         <RoiCalculator />
       </Card>
       <div class="mt-5 flex justify-center lg:justify-start">
-        <Button size="lg" variant="outline" href="#work">
+        <Button size="lg" href="#work">
           <Icon name="layers" size="sm" />
           <span data-i18n="hero.cta2">{t('hero.cta2')}</span>
           <Icon name="arrow-right" size="sm" />
