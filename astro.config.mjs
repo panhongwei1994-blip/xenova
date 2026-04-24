@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
+import compression from 'vite-plugin-compression';
 
 export default defineConfig({
   output: 'server',
@@ -42,7 +43,17 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      compression({
+        algorithm: 'gzip',
+        ext: '.gz',
+      }),
+      compression({
+        algorithm: 'brotliCompress',
+        ext: '.br',
+      }),
+    ],
   },
 
   security: {
