@@ -11,6 +11,9 @@ import { t } from '@/config/i18n.config';
 import { Image } from 'astro:assets';
 import RoiCalculator from '@/components/landing/RoiCalculator.astro';
 import PricingCards from '@/components/landing/PricingCards.astro';
+import ramenImage from '@/assets/images/projects/ramen.jpg';
+import sushiImage from '@/assets/images/projects/sushi.jpg';
+import bistroImage from '@/assets/images/projects/bistro.png';
 
 const projectItems = await getCollection('projects');
 const featuredProjects = projectItems
@@ -25,6 +28,23 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .slice(0, 3);
 
 const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3', 'pricing.trust.4'];
+const visualMoments = [
+  {
+    image: ramenImage,
+    alt: 'Restaurant menu and ordering preview',
+    labelKey: 'visual.moment.menu',
+  },
+  {
+    image: sushiImage,
+    alt: 'Restaurant brand website preview',
+    labelKey: 'visual.moment.brand',
+  },
+  {
+    image: bistroImage,
+    alt: 'Restaurant direct ordering experience preview',
+    labelKey: 'visual.moment.order',
+  },
+];
 ---
 
 <LandingLayout
@@ -101,66 +121,36 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="services" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill><span data-i18n="services.badge">{t('services.badge')}</span></Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="services.title">
-            {t('services.title')}
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto" data-i18n="services.subtitle">
-          {t('services.subtitle')}
+  <!-- Visual Proof -->
+  <section class="relative z-10 border-t border-border bg-background py-[var(--space-section-md)]">
+    <div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div class="flex flex-col gap-5" data-reveal>
+        <Badge variant="brand" pill class="self-start">
+          <span data-i18n="visual.badge">{t('visual.badge')}</span>
+        </Badge>
+        <h2 class="font-display text-3xl font-bold text-foreground md:text-4xl" data-i18n="visual.title">
+          {t('visual.title')}
+        </h2>
+        <p class="max-w-xl text-lg leading-relaxed text-foreground-muted" data-i18n="visual.subtitle">
+          {t('visual.subtitle')}
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-3" data-reveal data-reveal-delay="1">
-        <!-- Branded Delivery System -->
-        <Card hover>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="shopping-cart" size="sm" />
+      <div class="grid gap-4 sm:grid-cols-3" data-reveal data-reveal-delay="1">
+        {visualMoments.map((moment, index) => (
+          <figure class={`group overflow-hidden rounded-2xl border border-border bg-background-secondary shadow-sm ${index === 0 ? 'sm:col-span-2' : ''}`}>
+            <div class={index === 0 ? 'aspect-[4/3]' : 'aspect-[3/4]'}>
+              <Image
+                src={moment.image}
+                alt={moment.alt}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
             </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground" data-i18n="services.2.title">{t('services.2.title')}</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.2.desc">
-                {t('services.2.desc')}
-              </p>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Mobile-First Website -->
-        <Card hover>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="smartphone" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground" data-i18n="services.1.title">{t('services.1.title')}</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.1.desc">
-                {t('services.1.desc')}
-              </p>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Google & FB Traffic -->
-        <Card hover>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="megaphone" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground" data-i18n="services.3.title">{t('services.3.title')}</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.3.desc">
-                {t('services.3.desc')}
-              </p>
-            </div>
-          </div>
-        </Card>
+            <figcaption class="border-t border-border px-4 py-3 text-sm font-semibold text-foreground">
+              <span data-i18n={moment.labelKey}>{t(moment.labelKey)}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </section>
@@ -244,6 +234,70 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
       </div>
 
       <PricingCards />
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill><span data-i18n="services.badge">{t('services.badge')}</span></Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="services.title">
+            {t('services.title')}
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto" data-i18n="services.subtitle">
+          {t('services.subtitle')}
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3" data-reveal data-reveal-delay="1">
+        <!-- Branded Delivery System -->
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="shopping-cart" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground" data-i18n="services.2.title">{t('services.2.title')}</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.2.desc">
+                {t('services.2.desc')}
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Mobile-First Website -->
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="smartphone" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground" data-i18n="services.1.title">{t('services.1.title')}</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.1.desc">
+                {t('services.1.desc')}
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Google & FB Traffic -->
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="megaphone" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground" data-i18n="services.3.title">{t('services.3.title')}</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5" data-i18n="services.3.desc">
+                {t('services.3.desc')}
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
     </div>
   </section>
 
