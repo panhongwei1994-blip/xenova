@@ -104,12 +104,12 @@ const gridClasses = cn(
         alt=""
         widths={[1280, 1920, 2560]}
         sizes="100vw"
-        class="h-full w-full object-cover opacity-60 dark:opacity-40"
+        class="h-full w-full object-cover opacity-90 dark:opacity-75"
         loading="eager"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
+      <div class="absolute inset-0 bg-gradient-to-b from-background/20 via-background/10 to-background" />
       {bgGlass && (
-        <div class="absolute inset-0 backdrop-blur-md bg-white/5 dark:bg-black/20" />
+        <div class="absolute inset-0 backdrop-blur-sm bg-black/10 dark:bg-black/30" />
       )}
     </div>
   )}
