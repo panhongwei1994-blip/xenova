@@ -112,7 +112,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'about.title.highlight': 'Your growth partner.',
     'about.p1': 'We understand the F&B business because we\'ve been in it. Our team combines restaurant operations experience with cutting-edge digital marketing expertise.',
     'about.p2': 'We help restaurants break free from third-party platform dependency and build their own digital presence.',
-    'about.cta': 'Learn More',
+    'about.cta': 'Read Our Story',
     'about.stat1': '200+ Restaurants Served',
     'about.stat2': 'F&B Specialized',
     'about.stat3': 'Serving Worldwide',
@@ -217,7 +217,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'cta.title': 'Ready to scale your restaurant?',
     'cta.subtitle': 'Stop losing 30% to delivery apps. Let us build your digital empire — from website to ordering system to ad campaigns.',
     'cta.button': 'Contact Us',
-    'cta.button2': 'Learn More',
+    'cta.button2': 'Discover Our Approach',
 
     // ── Footer ──
     'footer.copyright': '© {year} Hi Sora. All rights reserved.',
@@ -318,7 +318,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'about.title.highlight': '您的增长伙伴。',
     'about.p1': '我们深谙餐饮行业，因为我们就来自这个行业。我们的团队将餐厅运营经验与前沿数字营销技术完美结合。',
     'about.p2': '我们帮助餐厅摆脱第三方平台依赖，建立自己的数字化自主阵地。',
-    'about.cta': '了解更多',
+    'about.cta': '了解我们的故事',
     'about.stat1': '服务200+餐厅',
     'about.stat2': '餐饮行业专精',
     'about.stat3': '服务遍布全球',
@@ -423,7 +423,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'cta.title': '准备好提升您的餐厅业绩了吗？',
     'cta.subtitle': '停止向外卖平台缴纳30%佣金。让我们为您打造数字帝国——从品牌网站到点餐系统到广告投放。',
     'cta.button': '联系我们',
-    'cta.button2': '了解更多',
+    'cta.button2': '探索我们的方案',
 
     // ── Footer ──
     'footer.copyright': '© {year} Hi Sora. 保留所有权利。',
