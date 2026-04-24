@@ -10,6 +10,9 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
   site: process.env.SITE_URL || 'https://hisora.cc',
+  build: {
+    inlineStylesheets: 'always',
+  },
 
   env: {
     schema: {
