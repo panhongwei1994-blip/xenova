@@ -27,21 +27,6 @@ const capabilityCards = [
     tagKeys: ['about.page.card2.tag1', 'about.page.card2.tag2'],
   },
 ];
-
-const faqGroups = [
-  {
-    icon: 'messages-square',
-    titleKey: 'about.page.faq.group1.title',
-    name: 'faq-collaboration',
-    items: [1, 2, 3, 4],
-  },
-  {
-    icon: 'briefcase-business',
-    titleKey: 'about.page.faq.group2.title',
-    name: 'faq-delivery',
-    items: [1, 2, 3, 4],
-  },
-];
 ---
 
 <PageLayout
@@ -174,54 +159,6 @@ const faqGroups = [
     </div>
   </section>
 
-  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>
-            <span data-i18n="about.page.faq.badge">{t('about.page.faq.badge')}</span>
-          </Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="about.page.faq.title">
-            {t('about.page.faq.title')}
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance" data-i18n="about.page.faq.subtitle">
-          {t('about.page.faq.subtitle')}
-        </p>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2">
-        {faqGroups.map((group, groupIndex) => (
-          <Card variant="elevated" padding="lg" data-reveal data-reveal-delay={String(groupIndex + 1)}>
-            <div class="flex items-center gap-3 pb-4 border-b border-border">
-              <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name={group.icon} size="md" />
-              </div>
-              <h3 class="font-display text-base font-semibold text-foreground" data-i18n={group.titleKey}>
-                {t(group.titleKey)}
-              </h3>
-            </div>
-            <div class="w-full">
-              {group.items.map((item) => (
-                <details class="border-b border-border last:border-0" name={group.name}>
-                  <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                    <span data-i18n={`about.page.faq.g${groupIndex + 1}.q${item}`}>
-                      {t(`about.page.faq.g${groupIndex + 1}.q${item}`)}
-                    </span>
-                    <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
-                  </summary>
-                  <div class="pb-4 text-sm text-foreground-muted leading-relaxed" data-i18n={`about.page.faq.g${groupIndex + 1}.a${item}`}>
-                    {t(`about.page.faq.g${groupIndex + 1}.a${item}`)}
-                  </div>
-                </details>
-              ))}
-            </div>
-          </Card>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance" data-i18n="about.page.cta.title">
@@ -237,9 +174,3 @@ const faqGroups = [
     </div>
   </section>
 </PageLayout>
-
-<style>
-  details[open] > summary .faq-icon {
-    transform: rotate(180deg);
-  }
-</style>

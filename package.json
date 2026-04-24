@@ -1,29 +1,25 @@
 {
-  "name": "astro-rocket",
-  "version": "1.0.10",
-  "description": "Astro Rocket — A production-ready Astro 6 theme built on Tailwind CSS v4",
+  "name": "hi-sora-site",
+  "version": "1.0.11",
+  "description": "Hi Sora restaurant website, online ordering, and digital growth site.",
   "type": "module",
-  "author": "Hans Martens",
+  "author": "Hi Sora",
   "license": "MIT",
   "keywords": [
+    "restaurant-website",
+    "online-ordering",
+    "restaurant-marketing",
+    "cloudflare",
     "astro",
-    "astro-theme",
-    "theme",
-    "tailwind",
-    "tailwindcss",
-    "typescript",
-    "blog",
-    "starter",
-    "boilerplate",
     "seo"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hansmartens68/astro-rocket"
+    "url": "https://github.com/panhongwei1994-blip/xenova"
   },
-  "homepage": "https://github.com/hansmartens68/astro-rocket#readme",
+  "homepage": "https://hisora.cc",
   "bugs": {
-    "url": "https://github.com/hansmartens68/astro-rocket/issues"
+    "url": "https://github.com/panhongwei1994-blip/xenova/issues"
   },
   "scripts": {
     "dev": "astro dev",

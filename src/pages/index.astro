@@ -5,7 +5,6 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
 import { t } from '@/config/i18n.config';
 import { Image } from 'astro:assets';
@@ -18,13 +17,6 @@ import bistroImage from '@/assets/images/projects/bistro.png';
 const projectItems = await getCollection('projects');
 const featuredProjects = projectItems
   .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
-
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => {
-    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-    return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
-  })
   .slice(0, 3);
 
 const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3', 'pricing.trust.4'];
@@ -48,9 +40,10 @@ const visualMoments = [
 ---
 
 <LandingLayout
-  title="Hi Sora — Restaurant Digital Agency"
-  description="Hi Sora — We build independent ordering systems and high-converting websites for restaurants."
+  title="Restaurant Website Design & Online Ordering Systems"
+  description="Hi Sora builds fast restaurant websites, direct online ordering systems, and Google/Facebook growth funnels for restaurants that want to reduce delivery app commission."
   image="/og-default.svg"
+  imageAlt="Hi Sora restaurant website and online ordering service"
   includePersonSchema={true}
   includeProfessionalServiceSchema={true}
 >
@@ -125,9 +118,6 @@ const visualMoments = [
   <section class="relative z-10 border-t border-border bg-background py-[var(--space-section-md)]">
     <div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
       <div class="flex flex-col gap-5" data-reveal>
-        <Badge variant="brand" pill class="self-start">
-          <span data-i18n="visual.badge">{t('visual.badge')}</span>
-        </Badge>
         <h2 class="font-display text-3xl font-bold text-foreground md:text-4xl" data-i18n="visual.title">
           {t('visual.title')}
         </h2>
@@ -143,6 +133,8 @@ const visualMoments = [
               <Image
                 src={moment.image}
                 alt={moment.alt}
+                loading="lazy"
+                sizes={index === 0 ? '(min-width: 1024px) 45vw, 100vw' : '(min-width: 640px) 33vw, 100vw'}
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -176,7 +168,7 @@ const visualMoments = [
             variant="elevated" 
             hover 
             padding="lg" 
-            href={project.data.url || `/projects/${project.id.replace(/\.mdx?$/, '')}`} 
+            href={project.data.url} 
             target="_blank" 
             rel="noopener noreferrer" 
             class="group flex flex-col"
@@ -184,7 +176,13 @@ const visualMoments = [
             <div class="flex flex-1 flex-col">
               {project.data.image ? (
                 <div class="mb-4 h-56 lg:h-48 w-full overflow-hidden rounded-lg">
-                  <Image src={project.data.image} alt={project.data.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                  <Image
+                    src={project.data.image}
+                    alt={project.data.imageAlt || project.data.title}
+                    loading="lazy"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
               ) : (
                 <div class="mb-4 h-56 lg:h-48 w-full overflow-hidden rounded-lg bg-background-tertiary flex items-center justify-center">
@@ -413,46 +411,6 @@ const visualMoments = [
             </div>
           </div>
         </Card>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex items-end justify-between" data-reveal>
-        <div class="flex flex-col gap-6">
-          <Badge variant="brand" pill class="self-start"><span data-i18n="blog.badge">{t('blog.badge')}</span></Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="blog.title">
-            {t('blog.title')}
-          </h2>
-        </div>
-        <a href="/blog" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors shrink-0">
-          <span data-i18n="blog.viewall">{t('blog.viewall')}</span>
-          <Icon name="arrow-right" size="sm" />
-        </a>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-3" data-reveal data-reveal-delay="1">
-        {posts.map((post) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            href={`/blog/${post.id.replace('en/', '')}`}
-            publishedAt={post.data.publishedAt}
-            tags={post.data.tags}
-            author={post.data.author}
-            image={post.data.image}
-            svgSlug={post.data.svgSlug}
-          />
-        ))}
-      </div>
-
-      <div class="text-center sm:hidden">
-        <Button variant="outline" href="/blog">
-          <span data-i18n="blog.viewall">{t('blog.viewall')}</span>
-          <Icon name="arrow-right" size="sm" />
-        </Button>
       </div>
     </div>
   </section>

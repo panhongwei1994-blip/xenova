@@ -1,7 +1,7 @@
 /* =============================================================================
-   Astro Rocket Theme - Default
+   Hi Sora Theme - Default
    =============================================================================
-   The original Astro Rocket theme: clean, neutral grays with International Orange
+   Clean neutral grays with an International Orange
    accent.
 
    Theme Contract: Every theme must define the same set of semantic tokens
@@ -189,4 +189,3 @@ html.dark[data-theme="orange"] {
   --theme-shadow-xl: 0 24px 48px oklch(9% 0.02 38 / 0.55),
     0 2px 4px oklch(50% 0.15 38 / 0.09);
 }
-

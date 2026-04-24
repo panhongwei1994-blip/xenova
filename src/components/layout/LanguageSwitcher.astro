@@ -46,7 +46,6 @@ const { class: className } = Astro.props;
 
   // ── Navigation label keys for dynamic nav translation ──
   const navLabelMap: Record<string, string> = {
-    'Blog': 'blog.badge',
     'Projects': 'portfolio.badge',
     'About': 'nav.about',
     'Contact': 'nav.contact',
@@ -59,7 +58,6 @@ const { class: className } = Astro.props;
     '定价': 'nav.pricing',
     '关于我们': 'nav.about',
     '联系我们': 'nav.contact',
-    '行业资讯': 'blog.badge',
   };
 
   function detectLang(): string {
@@ -73,7 +71,7 @@ const { class: className } = Astro.props;
   }
 
   function applyTranslations(lang: string) {
-    const dict = translations[lang] || translations.en;
+    const dict = lang === 'zh' ? translations.zh : translations.en;
     if (!dict) return;
 
     // Inject text into all data-i18n elements

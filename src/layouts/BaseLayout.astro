@@ -59,7 +59,7 @@ if (includeProfessionalServiceSchema) {
 <html lang="en" class="scroll-smooth dark" data-theme="blue">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Favicon -->
@@ -77,9 +77,6 @@ if (includeProfessionalServiceSchema) {
       noindex={noindex}
       nofollow={nofollow}
     />
-
-    <!-- RSS Feed -->
-    <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} RSS Feed`} href="/rss.xml" />
 
     <!-- JSON-LD Structured Data -->
     <JsonLd schema={schemas} />

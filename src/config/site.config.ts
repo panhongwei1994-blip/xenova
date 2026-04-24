@@ -60,7 +60,7 @@ export interface SiteConfig {
 const siteConfig: SiteConfig = {
   name: 'Hi Sora',
   description:
-    'Hi Sora — We build independent ordering systems and high-converting websites for restaurants. Drive massive traffic via Google & Facebook.',
+    'Hi Sora builds fast restaurant websites, direct online ordering systems, and Google/Facebook growth funnels for restaurants that want to reduce delivery app commission.',
   url: SITE_URL || 'https://hisora.cc',
   ogImage: '/og-default.svg',
   author: 'Hi Sora',
@@ -69,7 +69,7 @@ const siteConfig: SiteConfig = {
   address: {
     street: '',
     city: 'Zurich',
-    state: '',
+    state: 'Zurich',
     zip: '',
     country: 'Switzerland',
   },
