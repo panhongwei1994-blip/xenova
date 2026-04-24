@@ -47,6 +47,7 @@ const { class: className } = Astro.props;
   // ── Navigation label keys for dynamic nav translation ──
   const navLabelMap: Record<string, string> = {
     'Projects': 'portfolio.badge',
+    'Blog': 'nav.blog',
     'About': 'nav.about',
     'Contact': 'nav.contact',
     'Services': 'nav.services',
@@ -55,6 +56,7 @@ const { class: className } = Astro.props;
     // ZH reverse-map
     '服务': 'nav.services',
     '案例展示': 'nav.portfolio',
+    '文章': 'nav.blog',
     '定价': 'nav.pricing',
     '关于我们': 'nav.about',
     '联系我们': 'nav.contact',

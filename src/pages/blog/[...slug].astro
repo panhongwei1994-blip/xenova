@@ -1,0 +1,60 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import { getCollection, render } from 'astro:content';
+import { t } from '@/config/i18n.config';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/^en\//, '').replace(/\.mdx?$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<PageLayout
+  title={`${post.data.title} — Hi Sora Blog`}
+  description={post.data.description}
+  showScrollProgress
+>
+  <article>
+    <header class="border-b border-border bg-background-secondary py-[var(--space-section-md)]">
+      <div class="mx-auto max-w-3xl px-6">
+        <Button variant="ghost" href="/blog" class="mb-8">
+          <Icon name="arrow-left" size="sm" />
+          <span data-i18n="blog.back">{t('blog.back')}</span>
+        </Button>
+
+        <div class="mb-5 flex flex-wrap gap-2">
+          {post.data.tags.map((tag) => (
+            <Badge size="sm" variant="brand">{tag}</Badge>
+          ))}
+        </div>
+
+        <h1 class="font-display text-4xl font-bold leading-tight text-foreground md:text-5xl">
+          {post.data.title}
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-foreground-muted">
+          {post.data.description}
+        </p>
+        <p class="mt-6 text-sm text-foreground-muted">
+          {post.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · {post.data.author}
+        </p>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-3xl px-6 py-[var(--space-section-md)]">
+      <div class="prose prose-lg">
+        <Content />
+      </div>
+    </div>
+  </article>
+</PageLayout>

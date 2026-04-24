@@ -26,6 +26,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'nav.services': 'Services',
     'nav.portfolio': 'Portfolio',
     'nav.pricing': 'Pricing',
+    'nav.blog': 'Blog',
     'nav.about': 'About',
     'nav.contact': 'Contact',
 
@@ -211,6 +212,14 @@ export const translations: Record<Locale, TranslationMap> = {
     'testimonials.2.name': 'Maria Santos',
     'testimonials.2.role': 'GM, Pizza Republic',
 
+    // ── Blog / Guides ──
+    'blog.badge': 'Growth Guides',
+    'blog.title': 'Restaurant Growth Articles',
+    'blog.subtitle': 'Practical thinking on direct ordering, local traffic, and reducing delivery app dependency.',
+    'blog.viewall': 'View all articles',
+    'blog.readmore': 'Read article',
+    'blog.back': 'Back to articles',
+
     // ── CTA ──
     'cta.title': 'Ready to scale your restaurant?',
     'cta.subtitle': 'Stop losing 30% to delivery apps. Let us build your digital empire — from website to ordering system to ad campaigns.',
@@ -230,6 +239,7 @@ export const translations: Record<Locale, TranslationMap> = {
     'nav.services': '服务',
     'nav.portfolio': '案例展示',
     'nav.pricing': '定价',
+    'nav.blog': '文章',
     'nav.about': '关于我们',
     'nav.contact': '联系我们',
 
@@ -414,6 +424,14 @@ export const translations: Record<Locale, TranslationMap> = {
     'testimonials.2.quote': '"他们的Google广告策略每周为我们带来150+新订单。我们终于有了自己的客户数据库，不再依赖外卖平台了。"',
     'testimonials.2.name': '玛丽亚·桑托斯',
     'testimonials.2.role': 'Pizza Republic 总经理',
+
+    // ── 博客 / 文章 ──
+    'blog.badge': '增长文章',
+    'blog.title': '餐厅线上增长文章',
+    'blog.subtitle': '关于自有点餐、本地引流、减少外卖平台依赖的实用思路。',
+    'blog.viewall': '查看全部文章',
+    'blog.readmore': '阅读全文',
+    'blog.back': '返回文章列表',
 
     // ── CTA ──
     'cta.title': '准备好提升您的餐厅业绩了吗？',

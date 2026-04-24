@@ -14,9 +14,20 @@ import ramenImage from '@/assets/images/projects/ramen.jpg';
 import sushiImage from '@/assets/images/projects/sushi.jpg';
 import bistroImage from '@/assets/images/projects/bistro.png';
 
+function getBlogSlug(id: string) {
+  return id.replace(/^en\//, '').replace(/\.mdx?$/, '');
+}
+
 const projectItems = await getCollection('projects');
 const featuredProjects = projectItems
   .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+    return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
+  })
   .slice(0, 3);
 
 const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3', 'pricing.trust.4'];
@@ -411,6 +422,50 @@ const visualMoments = [
             </div>
           </div>
         </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col gap-4 text-center items-center" data-reveal>
+        <Badge variant="brand" pill><span data-i18n="blog.badge">{t('blog.badge')}</span></Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground" data-i18n="blog.title">
+          {t('blog.title')}
+        </h2>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto" data-i18n="blog.subtitle">
+          {t('blog.subtitle')}
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3" data-reveal data-reveal-delay="1">
+        {posts.map((post) => (
+          <Card variant="elevated" hover padding="lg" href={`/blog/${getBlogSlug(post.id)}`} class="group flex h-full flex-col">
+            <div class="mb-4 flex flex-wrap gap-2">
+              {post.data.tags.slice(0, 2).map((tag) => (
+                <Badge size="sm" variant="brand">{tag}</Badge>
+              ))}
+            </div>
+            <h3 class="font-display text-xl font-bold text-foreground leading-tight">
+              {post.data.title}
+            </h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-foreground-muted">
+              {post.data.description}
+            </p>
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-500">
+              <span data-i18n="blog.readmore">{t('blog.readmore')}</span>
+              <Icon name="arrow-right" size="sm" class="transition-transform group-hover:translate-x-1" />
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <div class="text-center" data-reveal data-reveal-delay="2">
+        <Button variant="outline" href="/blog">
+          <span data-i18n="blog.viewall">{t('blog.viewall')}</span>
+          <Icon name="arrow-right" size="sm" />
+        </Button>
       </div>
     </div>
   </section>
