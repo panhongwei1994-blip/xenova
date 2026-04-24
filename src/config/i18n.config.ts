@@ -95,13 +95,6 @@ export const translations: Record<Locale, TranslationMap> = {
     'roi.savings_desc': '*Based on shifting your regular customers to a zero-commission direct ordering system.',
     'roi.contact_btn': 'Build My System',
 
-    // ── Visual Proof ──
-    'visual.title': 'A site customers can understand at a glance',
-    'visual.subtitle': 'Show the menu, guide direct orders, and make the next action obvious on mobile.',
-    'visual.moment.menu': 'Menus that feel easy to browse',
-    'visual.moment.brand': 'A brand page that looks like your restaurant',
-    'visual.moment.order': 'Direct ordering without platform friction',
-
     // ── Services ──
     'services.badge': 'Services',
     'services.title': 'What We Do',
@@ -307,13 +300,6 @@ export const translations: Record<Locale, TranslationMap> = {
     'roi.action_hint': '如果每月外卖额在 $10k 左右，通常很快就能覆盖建站成本。',
     'roi.savings_desc': '*测算基于将高频熟客引导至自有系统省下的平台佣金',
     'roi.contact_btn': '马上定制我的系统',
-
-    // ── 视觉展示 ──
-    'visual.title': '让顾客一眼看懂，马上能下单',
-    'visual.subtitle': '菜单展示、直接点单和联系入口，都围绕手机端顾客习惯来设计。',
-    'visual.moment.menu': '菜单清楚好浏览',
-    'visual.moment.brand': '品牌页面要像自己的餐厅',
-    'visual.moment.order': '直接点单，不绕平台',
 
     // ── 服务 ──
     'services.badge': '核心服务',
