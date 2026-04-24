@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from 'astro/types';
 import { cn } from '@/lib/cn';
 import { heroSectionVariants } from './hero.variants';
+import { Image } from 'astro:assets';
 
 interface Props extends HTMLAttributes<'section'> {
   /** Layout mode: centered single column or split two-column */
@@ -18,6 +19,10 @@ interface Props extends HTMLAttributes<'section'> {
   showScrollIndicator?: boolean;
   /** Max-width class for the description wrapper (default: max-w-xl) */
   descriptionClass?: string;
+  /** Background image */
+  bgImage?: ImageMetadata;
+  /** Show glassmorphism effect (backdrop blur) on content background */
+  bgGlass?: boolean;
 }
 
 const {
@@ -28,6 +33,8 @@ const {
   bottomFade = false,
   showScrollIndicator = false,
   descriptionClass = 'max-w-xl',
+  bgImage,
+  bgGlass = false,
   class: className,
   ...attrs
 } = Astro.props;
@@ -87,6 +94,23 @@ const gridClasses = cn(
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </div>
+    </div>
+  )}
+
+  {bgImage && (
+    <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <Image
+        src={bgImage}
+        alt=""
+        widths={[1280, 1920, 2560]}
+        sizes="100vw"
+        class="h-full w-full object-cover opacity-60 dark:opacity-40"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
+      {bgGlass && (
+        <div class="absolute inset-0 backdrop-blur-md bg-white/5 dark:bg-black/20" />
+      )}
     </div>
   )}
 

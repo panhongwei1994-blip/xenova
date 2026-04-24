@@ -10,6 +10,7 @@ import { t } from '@/config/i18n.config';
 import { Image } from 'astro:assets';
 import RoiCalculator from '@/components/landing/RoiCalculator.astro';
 import PricingCards from '@/components/landing/PricingCards.astro';
+import heroBg from '@/assets/images/hero-bg.png';
 
 function getBlogSlug(id: string) {
   return id.replace(/^en\//, '').replace(/\.mdx?$/, '');
@@ -39,7 +40,7 @@ const pricingTrustKeys = ['pricing.trust.1', 'pricing.trust.2', 'pricing.trust.3
   includeProfessionalServiceSchema={true}
 >
   <!-- Hero -->
-  <Hero layout="centered" size="xl" class="hero-dark-gradient !pt-28 md:!pt-[calc(var(--space-page-top)_+_var(--space-16))]" showScrollIndicator descriptionClass="max-w-3xl">
+  <Hero layout="centered" size="xl" bgImage={heroBg} bgGlass={true} class="hero-dark-gradient !pt-28 md:!pt-[calc(var(--space-page-top)_+_var(--space-16))]" showScrollIndicator descriptionClass="max-w-3xl">
     <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">
       <span data-i18n="hero.badge">{t('hero.badge')}</span>
     </Badge>
