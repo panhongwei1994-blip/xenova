@@ -7,6 +7,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-XSS-Protection: 1; mode=block
+  Vary: Accept-Encoding
 
 # Static assets with long-term caching (Astro immutable assets)
 /_astro/*
