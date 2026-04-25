@@ -1,0 +1,143 @@
+---
+import Icon from '../../primitives/Icon/Icon.astro';
+import { t } from '@/config/i18n.config';
+
+/**
+ * PwaPrompt Component
+ * Mimics a native-style "Add to Home Screen" bottom sheet.
+ * Shows only on mobile browsers, with OS-specific instructions.
+ */
+---
+
+<div
+  id="pwa-prompt"
+  class="fixed bottom-0 left-0 right-0 z-[60] hidden translate-y-full transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1)"
+  role="dialog"
+  aria-labelledby="pwa-title"
+>
+  <div class="mx-auto max-w-md overflow-hidden bg-gray-950/90 p-4 text-white shadow-[0_-8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl border-t border-white/10 sm:rounded-t-2xl sm:border-x">
+    <div class="flex items-start justify-between gap-4">
+      <div class="flex-1">
+        <div class="flex items-center gap-2">
+          <div class="flex h-6 w-6 items-center justify-center rounded-md bg-blue-500 shadow-lg shadow-blue-500/20">
+            <Icon name="brand-astro" size="xs" class="text-white" />
+          </div>
+          <h3 id="pwa-title" class="text-sm font-bold tracking-tight text-white/95" data-i18n="pwa.title">
+            {t('pwa.title')}
+          </h3>
+        </div>
+        
+        <div class="mt-3 space-y-2">
+          <!-- iOS Instructions -->
+          <div id="pwa-ios" class="hidden text-[11px] leading-snug text-white/60">
+            <p class="flex flex-wrap items-center gap-x-1 gap-y-1">
+              <span data-i18n="pwa.ios.p1_part1">{t('pwa.ios.p1').split('{icon}')[0]}</span>
+              <span class="inline-flex h-5 w-5 items-center justify-center rounded bg-white/10 text-blue-400">
+                <Icon name="share" size="xs" />
+              </span>
+              <span data-i18n="pwa.ios.p1_part2">{t('pwa.ios.p1').split('{icon}')[1]}</span>
+            </p>
+            <p class="mt-1" data-i18n="pwa.ios.p2">{t('pwa.ios.p2')}</p>
+          </div>
+
+          <!-- Android/Generic Instructions -->
+          <div id="pwa-android" class="hidden text-[11px] leading-snug text-white/60">
+            <p class="flex flex-wrap items-center gap-x-1 gap-y-1">
+              <span data-i18n="pwa.android.p1_part1">{t('pwa.android.p1').split('{icon}')[0]}</span>
+              <span class="inline-flex h-5 w-5 items-center justify-center rounded bg-white/10 text-white/80">
+                <Icon name="more-vertical" size="xs" />
+              </span>
+              <span data-i18n="pwa.android.p1_part2">{t('pwa.android.p1').split('{icon}')[1]}</span>
+            </p>
+            <p class="mt-1" data-i18n="pwa.android.p2">{t('pwa.android.p2')}</p>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        id="pwa-close"
+        class="flex h-6 w-6 items-center justify-center rounded-full text-white/40 transition-colors hover:bg-white/10 hover:text-white"
+        aria-label="Close"
+      >
+        <Icon name="x" size="xs" />
+      </button>
+    </div>
+
+    <button
+      type="button"
+      id="pwa-dismiss"
+      class="mt-5 w-full rounded-xl bg-white/5 py-2.5 text-[11px] font-semibold text-white/40 transition-all hover:bg-white/10 hover:text-white/80 active:scale-[0.98]"
+      data-i18n="pwa.dismiss"
+    >
+      {t('pwa.dismiss')}
+    </button>
+  </div>
+</div>
+
+<script>
+  function initPwaPrompt() {
+    const prompt = document.getElementById('pwa-prompt');
+    const closeBtn = document.getElementById('pwa-close');
+    const dismissBtn = document.getElementById('pwa-dismiss');
+    const iosContent = document.getElementById('pwa-ios');
+    const androidContent = document.getElementById('pwa-android');
+
+    if (!prompt) return;
+
+    const STORAGE_KEY = 'h-sora-pwa-dismissed';
+    
+    // Check if dismissed
+    const isDismissed = localStorage.getItem(STORAGE_KEY);
+    if (isDismissed) return;
+
+    // Detect environment
+    const ua = navigator.userAgent;
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+    
+    // Detect if already installed (standalone mode)
+    const isStandalone = (window.navigator as any).standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+    // Only show on mobile browsers, not in standalone mode
+    if (!isMobile || isStandalone) return;
+
+    // OS detection for specific instructions
+    const isIOS = /iPhone|iPad|iPod/.test(ua);
+    if (isIOS) {
+      iosContent?.classList.remove('hidden');
+    } else {
+      androidContent?.classList.remove('hidden');
+    }
+
+    // Show with a slight delay
+    setTimeout(() => {
+      prompt.classList.remove('hidden');
+      // Force reflow
+      void prompt.offsetHeight;
+      prompt.classList.remove('translate-y-full');
+    }, 4000);
+
+    function hide(permanently = false) {
+      prompt?.classList.add('translate-y-full');
+      if (permanently) {
+        localStorage.setItem(STORAGE_KEY, 'true');
+      }
+      setTimeout(() => {
+        prompt?.classList.add('hidden');
+      }, 500);
+    }
+
+    closeBtn?.addEventListener('click', () => hide(false));
+    dismissBtn?.addEventListener('click', () => hide(true));
+  }
+
+  // Handle both initial load and view transitions
+  initPwaPrompt();
+  document.addEventListener('astro:page-load', initPwaPrompt);
+</script>
+
+<style>
+  .cubic-bezier\(0\.16\,\ 1\,\ 0\.3\,\ 1\) {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>

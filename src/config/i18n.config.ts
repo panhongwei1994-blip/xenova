@@ -221,6 +221,12 @@ export const translations: Record<Locale, TranslationMap> = {
 
     // ── Footer ──
     'footer.copyright': '© {year} Hi Sora. All rights reserved.',
+    'pwa.title': 'Add Hi Sora to Home Screen',
+    'pwa.ios.p1': 'Tap the Share icon or {icon} in your browser.',
+    'pwa.ios.p2': 'Select "Add to Home Screen" from the menu.',
+    'pwa.android.p1': 'Tap the Menu icon {icon} in your browser.',
+    'pwa.android.p2': 'Select "Install app" or "Add to Home screen".',
+    'pwa.dismiss': "Don't remind me",
   },
 
   zh: {
@@ -427,6 +433,12 @@ export const translations: Record<Locale, TranslationMap> = {
 
     // ── Footer ──
     'footer.copyright': '© {year} Hi Sora. 保留所有权利。',
+    'pwa.title': '将 Hi Sora 添加到手机屏幕',
+    'pwa.ios.p1': '点按浏览器中的 分享 或 {icon} 分享图标',
+    'pwa.ios.p2': '在菜单中选择「添加到主屏幕」。',
+    'pwa.android.p1': '点按浏览器中的 菜单 {icon} 图标',
+    'pwa.android.p2': '选择「安装应用」或「添加到主屏幕」。',
+    'pwa.dismiss': '不再提醒',
   },
 };
 

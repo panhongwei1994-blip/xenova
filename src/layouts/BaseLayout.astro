@@ -4,6 +4,7 @@ import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
+import PwaPrompt from '@/components/ui/overlay/PwaPrompt/PwaPrompt.astro';
 import { ClientRouter } from 'astro:transitions';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
@@ -190,6 +191,7 @@ if (includeProfessionalServiceSchema) {
     <slot name="footer" />
 
     <ConsentBanner />
+    <PwaPrompt />
 
     <!-- Back to top button -->
     <button
